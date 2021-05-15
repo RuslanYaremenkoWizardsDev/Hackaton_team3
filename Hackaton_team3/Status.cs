@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Hackaton_team3
 {
-    enum Status
+     public enum Status
     {
         NotStarted,
         InProgress,
