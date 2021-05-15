@@ -65,8 +65,13 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Match.cs" />
+    <Compile Include="obj\Debug\.NETFramework,Version=v4.7.2.AssemblyAttributes.cs" />
+    <Compile Include="obj\Debug\App.g.i.cs" />
+    <Compile Include="obj\Debug\Hackaton_team3_Content.g.i.cs" />
+    <Compile Include="obj\Debug\MainWindow.g.i.cs" />
     <Compile Include="Participant.cs" />
     <Compile Include="Status.cs" />
+    <Compile Include="Tournament.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -100,6 +105,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="bin\Debug\Hackaton_team3.exe.config" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -108,6 +114,20 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\Debug\Hackaton_team3.exe" />
+    <Content Include="bin\Debug\Hackaton_team3.pdb" />
+    <Content Include="bin\Debug\Serilog.dll" />
+    <Content Include="bin\Debug\Serilog.Sinks.File.dll" />
+    <Content Include="bin\Debug\Serilog.Sinks.File.pdb" />
+    <Resource Include="bin\Debug\Serilog.Sinks.File.xml" />
+    <Resource Include="bin\Debug\Serilog.xml" />
+    <Content Include="bin\Debug\System.Data.SqlClient.dll" />
+    <Resource Include="bin\Debug\System.Data.SqlClient.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\Release\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -11,5 +11,6 @@ namespace Hackaton_team3
         NotStarted,
         InProgress,
         Completed,
+        Canceled
     }
 }
