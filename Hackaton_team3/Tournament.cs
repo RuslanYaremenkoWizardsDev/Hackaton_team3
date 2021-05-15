@@ -50,9 +50,8 @@ namespace Hackaton_team3
         public DateTime Start { get; set; }
         public DateTime EndRegistration { get; set; }
         public Division Division { get; set; }
-
         Dictionary<Participant, int> points;
-
+        public Division tournamentDivision { get; set; }
         public string Location
         {
             get { return _location; }
@@ -69,17 +68,17 @@ namespace Hackaton_team3
             }
         }
 
-        public void AddPointsToTeam(Participant team, int p)
-        {
-            if (!points.ContainsKey(team))
-            {
-                points.Add(team, p);
-            }
-            else
-            {
-                points[team] = points[team] + p;
-            }
-        }
+        //public void AddPointsToTeam(Participant team, int p)
+        //{
+        //    if (!points.ContainsKey(team))
+        //    {
+        //        points.Add(team, p);
+        //    }
+        //    else
+        //    {
+        //        points[team] = points[team] + p;
+        //    }
+        //}
 
         public override bool Equals(object obj)
         {
