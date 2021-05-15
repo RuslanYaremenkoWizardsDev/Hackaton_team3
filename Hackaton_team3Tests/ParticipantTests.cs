@@ -1,10 +1,6 @@
-﻿using Hackaton_team3;
-using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using NUnit.Framework;
 
-namespace Hackaton_team3Tests
+namespace Hackaton_team3.Tests
 {
     class ParticipantTests
     {
