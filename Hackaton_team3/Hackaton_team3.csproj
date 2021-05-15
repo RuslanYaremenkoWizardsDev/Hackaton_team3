@@ -74,6 +74,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Match.cs" />
     <Compile Include="Participant.cs" />
     <Compile Include="Status.cs" />
     <Page Include="MainWindow.xaml">

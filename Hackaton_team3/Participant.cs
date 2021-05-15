@@ -4,7 +4,17 @@ namespace Hackaton_team3
 {
     public class Participant
     {
-        public String Name { get; set; }
+        private string _name;
+        public string Name {
+            get { return _name; }
+            set {
+                if (value == null)
+                {
+                    throw new ArgumentNullException();
+                }
+                else _name = value;            
+             }
+        }
         public Division Division { get; set; }
 
         public Participant(string name, Division d)
@@ -14,14 +24,16 @@ namespace Hackaton_team3
         }
         public override bool Equals(object obj)
         {
-            if (!(obj is Participant))
-                return false;
-            Participant temp = (Participant)obj;
-            if (temp.Name != Name)
-                return false;
-            if (!temp.Division.Equals(Division))
-                return false;
-            return true;
+            bool result = false;
+            if (obj is Participant)
+            {
+                Participant temp = (Participant)obj;
+                if (Name == temp.Name && Division == temp.Division)
+                {
+                    result = true;
+                }
+            }
+            return result;
         }
     }
 }
