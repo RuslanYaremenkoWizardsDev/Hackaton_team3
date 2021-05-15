@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.31005.135
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hackaton_team3", "Hackaton_team3\Hackaton_team3.csproj", "{26C15BD0-A5EC-4968-90F6-7F20FF2714B8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hackaton_team3Tests", "Hackaton_team3Tests\Hackaton_team3Tests.csproj", "{B9B69DF6-1BA7-47B1-B3C3-2115C9B228C9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hackaton_team3.Tests", "Hackaton_team3Tests\Hackaton_team3.Tests.csproj", "{B9B69DF6-1BA7-47B1-B3C3-2115C9B228C9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
