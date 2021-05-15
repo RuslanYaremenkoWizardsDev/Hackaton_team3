@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace Hackaton_team3
 {
-    enum Division
+    public enum Division
     {
         Beginner,
         Middle,
         Advanced
+            
     }
 }
