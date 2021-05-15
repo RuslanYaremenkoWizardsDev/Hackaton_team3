@@ -13,32 +13,29 @@ namespace Hackaton_team3Tests
         {
         }
 
-        [Test]//new Participant("Max", Division.Beginner), new Participant("Max", Division.Beginner), true
-        public void ConstructorTest()
+        [TestCase("1", Division.Advanced, "1", Division.Advanced)]
+        [TestCase("2", Division.Middle, "2", Division.Middle)]
+        [TestCase("3", Division.Beginner, "3", Division.Beginner)]
+        public void ConstructorTest(string actualName, Division actualDivision, string expectedName, Division expectedDivision)
         {
-            Participant first = new Participant("Max", Division.Beginner);
-            Assert.AreEqual("Max", first.Name);
-            Assert.AreEqual(Division.Beginner, first.Division);
+            Participant actualParticipant = new Participant(actualName, actualDivision);
+            Assert.AreEqual(expectedName, actualParticipant.Name);
+            Assert.AreEqual(expectedDivision, actualParticipant.Division);
             
            
         }
 
-        [Test]//new Participant("Max", Division.Beginner), new Participant("Max", Division.Beginner), true
-        public void EqualsTest1()
+        [TestCase("1", Division.Advanced, "1", Division.Advanced, true)]
+        [TestCase("1", Division.Advanced, "2", Division.Advanced, false)]
+        [TestCase("1", Division.Advanced, "1", Division.Middle, false)]
+        public void Equals_WhenValidTestPassed_ShouldRerturnTrueOrFalse(string actualName, Division actualDivision, string expectedName, Division expectedDivision, bool expected)
         {
-            Participant first = new Participant("Max", Division.Beginner);
-            Participant second = new Participant("Max", Division.Beginner);
-            bool act = first.Equals(second);
-            Assert.AreEqual(true, act);
-        }
+            Participant actualParticipant = new Participant(actualName, actualDivision);
+            Participant expectedParticipant = new Participant(expectedName, expectedDivision);
 
-        [Test]//new Participant("Max", Division.Beginner), new Participant("Max", Division.Beginner), true
-        public void EqualsTest2()
-        {
-            Participant first = new Participant("Max", Division.Beginner);
-            Participant second = new Participant("Payne", Division.Advanced);
-            bool act = first.Equals(second);
-            Assert.AreEqual(false, act);
+            bool actual = actualParticipant.Equals(expectedParticipant);
+
+            Assert.AreEqual(expected, actual);
         }
 
 
