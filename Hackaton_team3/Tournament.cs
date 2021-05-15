@@ -23,9 +23,9 @@ namespace Hackaton_team3
                 {
                     _name = value;
                 }
-                else 
-                { 
-                    throw new ArgumentNullException("Value is null"); 
+                else
+                {
+                    throw new ArgumentNullException("Value is null");
                 }
             }
         }
@@ -57,15 +57,27 @@ namespace Hackaton_team3
             get { return _location; }
             set
             {
-                if (value==null)
+                if (value == null)
                 {
                     throw new ArgumentNullException();
                 }
                 else
                 {
                     _location = value;
-                }           
+                }
             }
+        }
+
+        public Tournament()
+        {
+
+        }
+
+        public Tournament(string name, DateTime start, DateTime endRegistration)
+        {
+            Name = name;
+            Start = start;
+            EndRegistration = endRegistration;
         }
 
         //public void AddPointsToTeam(Participant team, int p)
@@ -86,11 +98,11 @@ namespace Hackaton_team3
             if (obj is Tournament)
             {
                 Tournament temp = (Tournament)obj;
-                if (Name==temp.Name && Description == temp.Description && Start==temp.Start && EndRegistration == temp.EndRegistration && Division == temp.Division)
+                if (Name == temp.Name && Description == temp.Description && Start == temp.Start && EndRegistration == temp.EndRegistration && Division == temp.Division)
                 {
                     result = true;
                 }
-                
+
             }
             return result;
 

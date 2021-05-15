@@ -67,6 +67,7 @@
     <Compile Include="Match.cs" />
     <Compile Include="Participant.cs" />
     <Compile Include="Status.cs" />
+    <Compile Include="Tournament.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
