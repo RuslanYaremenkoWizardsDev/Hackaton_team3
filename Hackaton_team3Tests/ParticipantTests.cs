@@ -21,6 +21,16 @@ namespace Hackaton_team3.Tests
            
         }
 
+
+        [TestCase("1,Advanced", "1", Division.Advanced)]
+        public void SerializerConstructorTest(string line, string expectedName, Division expectedDivision)
+        {
+            Participant actualPatricipant = Participant.Create(line);
+            Participant expectedParticipant = new Participant(expectedName,expectedDivision);
+           
+            Assert.AreEqual(expectedParticipant, actualPatricipant);
+        }
+
         [TestCase("1", Division.Advanced, "1", Division.Advanced, true)]
         [TestCase("1", Division.Advanced, "2", Division.Advanced, false)]
         [TestCase("1", Division.Advanced, "1", Division.Middle, false)]
@@ -34,6 +44,15 @@ namespace Hackaton_team3.Tests
             Assert.AreEqual(expected, actual);
         }
 
+        [TestCase("1", Division.Advanced, "\"1\",\"Advanced\"")]
+        public void Serialize_WhenValidTestPassed_ShouldReturnObjectToStringSerialization(string name, Division division, string expected)
+        {
+            Participant actualPatricipant = new Participant(name, division);
+            string actual = actualPatricipant.Serialize();
+            Assert.AreEqual(expected,actual);
+        }
 
+
+   
     }
 }
