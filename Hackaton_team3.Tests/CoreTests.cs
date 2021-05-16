@@ -52,6 +52,7 @@ namespace Hackaton_team3.Tests
         {
             Core core = Core.GetCore();
             core.ConnectToTournamntsDatabase();
+            core.InsertMatchDb(value);
         }
 
         [TestCase()]
@@ -59,7 +60,7 @@ namespace Hackaton_team3.Tests
         {
             Core core = Core.GetCore();
             core.ConnectToTournamntsDatabase();
-            core.InsertMatchDb(value);
+
 
 
             List<string> serializedTournaments = core.GetSerializedtournamentsFromDB();
@@ -80,43 +81,42 @@ namespace Hackaton_team3.Tests
             Assert.IsTrue(serializedMatches.Count > 0);
         }
 
-        [TestCase(null)]
-        public void GetCore_WhenInvalidTestPassed_ShouldReturnAgrumentNullException(string actualString)
+        //[TestCase(null)]
+        //public void GetCore_WhenInvalidTestPassed_ShouldReturnAgrumentNullException(string actualString)
+        //{
+        //    Assert.Throws<ArgumentNullException>(() => Core.GetCore(actualString));
+        //}
+
+        [TestCase(@"'TestName','Middle'")]
+        public void InsertParticipantInToDb_WhemValidTestPassed_ShouldAddNewValue(string value)
         {
-            Assert.Throws<ArgumentNullException>(() => Core.GetCore(actualString));
+            Core core = Core.GetCore();
+
+            core.ConnectToTournamntsDatabase();
+            core.InsertParticipantInToDb(value);
         }
 
-        //[TestCase(@"'TestName','Middle'")]
-        //public void InsertParticipantInToDb_WhemValidTestPassed_ShouldAddNewValue(string value)
-        //{
-        //    Core core = Core.GetCore();
-
-        //    core.ConnectDataBase();
-        //    core.InsertParticipantInToDb(value);
-
-
-        //[TestCase(@"'1','','Tournament','','2020.06.01','2020.05.01','Middle','Bo1','NotStarted'")]
-        //public void InsertTournamentToDB_WhenValidTestPassed_ShouldAddNewValue(string value)
-
-        //Core core = Core.GetCore();
-        //{
-        //    core.ConnectDataBase();
-        //    core.InsertTournamentDb(value);
+        [TestCase(@"'1','','Tournament','','2020.06.01','2020.05.01','Middle','Bo1','NotStarted'")]
+        public void InsertTournamentToDB_WhenValidTestPassed_ShouldAddNewValue(string value)
+        {
+            Core core = Core.GetCore(); 
+            core.ConnectToTournamntsDatabase();
+            core.InsertTournamentDb(value);
+            
+        }
 
 
 
-        //}
 
-        //public void TemporaryTestRemoveLater()
+        [Test]
+        public void TemporaryTestRemoveLater()        
+        {
 
-        //[Test]
-        //{
+            Core core = Core.GetCore();
 
-        //    Core core = Core.GetCore();
+            core.Innitialize();
 
-        //    core.Innitialize();
-
-        //}
+        }
 
         [Test]
         public void ConnectDataBase_WhenValidTestPassed_ConnectionwhithoutException()
@@ -128,4 +128,4 @@ namespace Hackaton_team3.Tests
             }
         }
     }
-}
+

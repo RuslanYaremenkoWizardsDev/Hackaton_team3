@@ -268,7 +268,7 @@ namespace Hackaton_team3
                 try
                 {
                     string query = $"select * from [dbo].[Tournaments]";
-                    SqlCommand command = new SqlCommand(query, _sqlConnection);
+                    SqlCommand command = new SqlCommand(query, _sqlConnectionTournamentsDb);
                     SqlDataReader reader = command.ExecuteReader();
 
                     while (reader.Read())
@@ -321,7 +321,7 @@ namespace Hackaton_team3
                 {
                     string query = $"insert dbo.[Tournaments] values({value})";
                     DbLogger.Information($"Trying : {query}");
-                    SqlCommand command = new SqlCommand(query, _sqlConnection);
+                    SqlCommand command = new SqlCommand(query, _sqlConnectionTournamentsDb);
                     int i = command.ExecuteNonQuery();
                     DbLogger.Information($"{i}Query is done : {query}");
                 }
@@ -344,7 +344,7 @@ namespace Hackaton_team3
                 try
                 {
                     string query = $"insert dbo.[Matchess] values({value})";                 
-                    SqlCommand command = new SqlCommand(query, _sqlConnection);
+                    SqlCommand command = new SqlCommand(query, _sqlConnectionTournamentsDb);
                     int i = command.ExecuteNonQuery();                 
                 }
                 catch (Exception e)
@@ -374,7 +374,7 @@ namespace Hackaton_team3
                     try
                     {
                         string query = $"select * from [dbo].[Tournaments_Matches] where TournamentID = {tournamentId} ";
-                        SqlCommand command = new SqlCommand(query, _sqlConnection);
+                        SqlCommand command = new SqlCommand(query, _sqlConnectionTournamentsDb);
                         SqlDataReader reader = command.ExecuteReader();
 
                         if (reader.Read())
@@ -406,7 +406,7 @@ namespace Hackaton_team3
                     try
                     {
                         string query = $"select * from [dbo].[Matches] where id in ({s})";
-                        SqlCommand command = new SqlCommand(query, _sqlConnection);
+                        SqlCommand command = new SqlCommand(query, _sqlConnectionTournamentsDb);
                         SqlDataReader reader = command.ExecuteReader();
 
                         if (reader.Read())
