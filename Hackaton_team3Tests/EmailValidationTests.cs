@@ -8,10 +8,6 @@ namespace Hackaton_team3.Tests
 {
     class EmailValidationTests
     {
-        public void Setup()
-        {
-        }
-
         [TestCase("egorusdnepr@gmail.com", true)]
         [TestCase("andreyzaycev12041961@gmail.com", true)]
         [TestCase("3266880@gmail.com", true)]
@@ -27,10 +23,10 @@ namespace Hackaton_team3.Tests
         public void EmailCheckTests_CheckIfEmailIsValid(string actualEmail, bool expected)
         {
             bool actual= EmailValidation.CheckEmail(actualEmail);
+
             Assert.AreEqual(expected,actual);
         }
 
-     
         [TestCase(null)]
         public void EmailCheckTests_ShouldReturnArgumentNullException(string actualEmail)
         {
