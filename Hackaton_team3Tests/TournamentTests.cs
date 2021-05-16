@@ -20,6 +20,22 @@ namespace Hackaton_team3.Tests
         }
 
         [TestCase(null)]
+        public void SerializeConstructorTest_ShouldReturnArgumentNullException(string serializedString)
+        {
+            Assert.Throws<ArgumentNullException>(() => Tournament.Create(serializedString));
+        }
+
+        [TestCase("1", "1,,Tournament,,2020.06.01,2020.05.01,Middle,Bo1,NotStarted")]
+        public void SerializeConstructorTest(string actualName,string actualLine)
+        {
+            Tournament actual = Tournament.Create(actualLine);
+            Tournament expected = CreateTournamentForSerializationTest(actualName);
+
+            Assert.That(actual, Is.TypeOf<Tournament>());
+            Assert.AreEqual(expected,actual);
+        }
+
+        [TestCase(null)]
         public void Create_WhenInvalidTestPassed_ShouldReturnArgumentNullExeption(string actualName)
         {
             Assert.Throws<ArgumentNullException>(() => Tournament.Create(actualName, new DateTime(), new DateTime()));
@@ -36,6 +52,36 @@ namespace Hackaton_team3.Tests
 
             Assert.AreEqual(expected, actual);
         }
+
+        [TestCase("1", "\"1\",\"\",\"Tournament\",\"\",\"2020.06.01\",\"2020.05.01\",\"Middle\",\"Bo1\",\"NotStarted\"")]
+
+        public void Serialize_WhenValidTestPassed_ShouldReturnSerializaedObjectAsText(
+                string actualName, string expected
+            )
+        {
+            Tournament actualTournament = CreateTournamentForSerializationTest(actualName);
+           
+            string actual = actualTournament.Serialize();
+            Assert.IsNotNull(actual);
+            Assert.AreEqual(expected, actual);
+        }
+
+        public Tournament CreateTournamentForSerializationTest(string name)
+        {
+            Tournament actualTournament = new Tournament();
+            actualTournament.Name = name;
+            actualTournament.Start = new DateTime(2020, 06, 01);
+            actualTournament.EndRegistration = new DateTime(2020, 05, 01);
+            actualTournament.Mode = TournamentMode.Tournament;
+            actualTournament.Description = "";
+            actualTournament.Division = Division.Middle;
+            actualTournament.Location = "";
+            actualTournament.Scenario = Scenario.Bo1;
+            actualTournament.Status = Status.NotStarted;
+
+            return actualTournament;
+        }
+
 
         [TestCase(null)]
         public void SetName_WhenInvalidTestPassed_ShouldReturnArgumentNullExeption(string actualName)
