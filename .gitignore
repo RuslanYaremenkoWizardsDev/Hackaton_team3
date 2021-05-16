@@ -227,5 +227,3 @@ _Pvt_Extensions
 .fake/
 *.binlog
 /.dotnet
-Hackaton_team3/TournamtsDb.mdf
-Hackaton_team3/TournamtsDb_log.ldf
