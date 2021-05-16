@@ -20,6 +20,10 @@ namespace Hackaton_team3.Tests
         [TestCase("brovko.sasha2002@gmail.com",true)]
         [TestCase("mashayakovenk...o7@gmail.com",false)]
         [TestCase("murashko.konst.andr@gmail.com", true)]
+        [TestCase(".murashko.konst.andr@gmail.com", false)]
+        [TestCase("murashko.konst.andr.@gmail.com", false)]
+        [TestCase("murashko.kons$#t.andr@gmail.com", false)]
+
         public void EmailCheckTests_CheckIfEmailIsValid(string actualEmail, bool expected)
         {
             bool actual= EmailValidation.CheckEmail(actualEmail);
