@@ -67,6 +67,10 @@ namespace Hackaton_team3
         }
         public Status Status { get; set; }
 
+        public Match()
+        {
+
+        }
         private Match(Participant participantOne, Participant participantTwo)
         {
             ParticipantOne = participantOne;

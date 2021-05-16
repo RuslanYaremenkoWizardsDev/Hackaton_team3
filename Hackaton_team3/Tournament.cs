@@ -169,6 +169,17 @@ namespace Hackaton_team3
             return result;
         }
 
+        public void AddMatch(Match Match)
+        {
+            if (Match == null)
+            {
+                throw new ArgumentNullException();
+            }
+            else
+            {
+                Matches.Add(Match);
+            }
+        }
         public string Serialize()
         {
             StringBuilder sb = new StringBuilder();

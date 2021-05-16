@@ -19,6 +19,32 @@ namespace Hackaton_team3.Tests
             Assert.AreEqual(new DateTime(yearEnd, monthEnd, dayEnd), test.EndRegistration);
         }
 
+        [TestCase(0, 1)]
+        [TestCase(5, 6)]
+        [TestCase(9, 10)]
+        public void AddMatch_WhenValidTestPassed_ShouldAddMatchToMatches(int matcherCountBeforeAdd, int expected)
+        {
+            Tournament actualTournament = CreateTournamentForSerializationTest("1");
+
+            Match newMatch;
+            for (int i = 0; i < matcherCountBeforeAdd; i++)
+            {
+                newMatch = new Match();
+                actualTournament.AddMatch(newMatch);
+            }
+            newMatch = new Match();
+            actualTournament.AddMatch(newMatch);
+            int matchCountAfterAdd = actualTournament.Matches.Count;
+
+            Assert.AreEqual(expected, matchCountAfterAdd);
+        }
+
+        [TestCase(null)]
+        public void AddMatch_WhenInvalidTestPassed_ShouldReturnArgumentNullExeption(string actualName)
+        {
+            Assert.Throws<ArgumentNullException>(() => new Tournament().AddMatch(null));
+        }
+
         [TestCase(null)]
         public void SerializeConstructorTest_ShouldReturnArgumentNullException(string serializedString)
         {
@@ -78,6 +104,7 @@ namespace Hackaton_team3.Tests
             actualTournament.Location = "";
             actualTournament.Scenario = Scenario.Bo1;
             actualTournament.Status = Status.NotStarted;
+            actualTournament.Matches = new List<Match>();
 
             return actualTournament;
         }
