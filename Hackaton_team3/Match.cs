@@ -1,8 +1,9 @@
 ﻿using System;
+using System.Text;
 
 namespace Hackaton_team3
 {
-    public class Match : ISerializableToDB
+    public class Match
     {
         private Participant _participantOne;
         private Participant _participantTwo;
@@ -111,9 +112,6 @@ namespace Hackaton_team3
             return result;
         }
 
-        public string Serialize()
-        {
-            throw new NotImplementedException();
-        }
+       
     }
 }
