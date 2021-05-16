@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using System.Collections.Generic;
 
 namespace Hackaton_team3.Tests
 {
@@ -51,6 +52,13 @@ namespace Hackaton_team3.Tests
             Assert.IsTrue(core.ConnectDataBase());
         }
 
+        [Test]
+        public void TemporaryTestRemoveLater()
+        {
+            Core core = Core.GetCore();
+            core.Innitialize();
+        }
+
         [TestCase(@"'TestName','Middle'")]
         public void InsertParticipantInToDb_WhemValidTestPassed_ShouldAddNewValue(string value)
         {
@@ -61,6 +69,26 @@ namespace Hackaton_team3.Tests
 
             
         }
+
+        [TestCase(@"'1','','Tournament','','2020.06.01','2020.05.01','Middle','Bo1','NotStarted'")]
+        public void InsertTournamentToDB_WhenValidTestPassed_ShouldAddNewValue(string value)
+        {
+            Core core = Core.GetCore();
+            core.ConnectDataBase();
+            core.InsertTournamentDb(value);
+        }
+
+        [TestCase()]
+        public void SelectTournamentsFromToDb_WhemValidTestPassed_ShouldReturnListOfTournaments()
+        {
+            Core core = Core.GetCore();
+            core.ConnectDataBase();
+
+            List<string> serializedTournaments = core.GetSerializedtournamentsFromDB();
+ 
+            Assert.IsTrue(serializedTournaments.Count>0);
+        }
+
         //[TestCase(null)]
         //public void GetCore_WhenInvalidTestPassed_ShouldReturnAgrumentNullException(string actualString)
         //{

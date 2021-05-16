@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 using Serilog;
 using Serilog.Core;
@@ -12,8 +13,21 @@ namespace Hackaton_team3
         private string _connectionPath = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Хакатон\Hackaton_team3\TournamtsDb.mdf;Integrated Security=True";
         private SqlConnection _sqlConnection;
         private LoggingLevelSwitch _loggerSwitch;
+        public List<Tournament> listOfTournaments;
         public Logger DbLogger { get; private set; }
 
+        public void Innitialize()
+        {
+            List<string> serializedTournaments = GetSerializedtournamentsFromDB();
+            listOfTournaments = new List<Tournament>();
+            foreach(var ser in serializedTournaments)
+            {
+                listOfTournaments.Add(Tournament.Create(ser));
+            
+            }
+            DbLogger.Information($"Size of result list : {listOfTournaments.Count}");
+
+        }
         private Core()
         {
             ConnectDataBase();
@@ -181,8 +195,34 @@ namespace Hackaton_team3
            
         }
 
-        
-      
+       
+        public List<string> GetSerializedtournamentsFromDB()
+        {
+            List<string> result = new List<string>();
+            if (TableHasValues("Tournaments"))
+            {
+                try
+                {
+                    string query = $"select * from [dbo].[Tournaments]";
+                    SqlCommand command = new SqlCommand(query, _sqlConnection);
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        result.Add( $"{reader[1]},{reader[2]},{reader[3]},{reader[4]},{reader[5]},{reader[6]},{reader[7]},{reader[8]},{reader[9]}");
+                    }
+                    reader.Close();
+                    DbLogger.Information($"Query is done : {query}");
+                }
+                catch (Exception e)
+                {                    
+                    DbLogger.Error(e.ToString());
+                }
+            }
+
+            return result;
+        }
+
         public bool InsertParticipantInToDb(string value)
         {
             if (value != null)
@@ -206,6 +246,32 @@ namespace Hackaton_team3
 
             throw new ArgumentNullException("Value is null");
         }
+
+        public bool InsertTournamentDb(string value)
+        {
+            DbLogger.Information($"Trying : InsertTournamentDb");
+            if (value != null)
+            {
+                bool result = true;
+                try
+                {
+                    string query = $"insert dbo.[Tournaments] values({value})";
+                    DbLogger.Information($"Trying : {query}");
+                    SqlCommand command = new SqlCommand(query, _sqlConnection);
+                    int i = command.ExecuteNonQuery();
+                    DbLogger.Information($"{i}Query is done : {query}");
+                }
+                catch (Exception e)
+                {
+                    result = false;
+                    DbLogger.Error(e.ToString());
+                }
+                return result;
+            }
+
+            throw new ArgumentNullException("Value is null");
+        }
+
 
         private void InitDbLogger()
         {
