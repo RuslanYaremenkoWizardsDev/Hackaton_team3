@@ -1,21 +1,20 @@
 ﻿using NUnit.Framework;
 using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Text.RegularExpressions;
-
 namespace Hackaton_team3.Tests
 {
-    class EmailValidationTests
+    public class EmailValidationTests
     {
+        public void Setup()
+        {
+        }
 
         [TestCase("egorusdnepr@gmail.com", true)]
         [TestCase("andreyzaycev12041961@gmail.com", true)]
         [TestCase("3266880@gmail.com", true)]
         [TestCase("Skochmen@gmail.comiii", false)]
         [TestCase("Step.nst@gmail.com", true)]
-        [TestCase("brovko.sasha2002@gmail.com",true)]
-        [TestCase("mashayakovenk...o7@gmail.com",false)]
+        [TestCase("brovko.sasha2002@gmail.com", true)]
+        [TestCase("mashayakovenk...o7@gmail.com", false)]
         [TestCase("murashko.konst.andr@gmail.com", true)]
         [TestCase(".murashko.konst.andr@gmail.com", false)]
         [TestCase("murashko.konst.andr.@gmail.com", false)]
@@ -23,11 +22,12 @@ namespace Hackaton_team3.Tests
 
         public void EmailCheckTests_CheckIfEmailIsValid(string actualEmail, bool expected)
         {
-            bool actual= EmailValidation.CheckEmail(actualEmail);
-            Assert.AreEqual(expected,actual);
+            bool actual = EmailValidation.CheckEmail(actualEmail);
+            
+
+            Assert.AreEqual(expected, actual);
         }
 
-     
         [TestCase(null)]
         public void EmailCheckTests_ShouldReturnArgumentNullException(string actualEmail)
         {
