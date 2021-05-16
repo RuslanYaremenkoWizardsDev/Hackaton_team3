@@ -13,10 +13,12 @@ namespace Hackaton_team3
         private SqlConnection _sqlConnection;
         private LoggingLevelSwitch _loggerSwitch;
         public Logger DbLogger { get; private set; }
+        public Tournament CurrentTournament { get; set; }
 
         private Core()
         {
             ConnectDataBase();
+            CurrentTournament = Tournament.Create("",new DateTime(),new DateTime());
         }
 
         public static Core GetCore()

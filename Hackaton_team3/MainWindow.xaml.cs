@@ -20,12 +20,17 @@ namespace Hackaton_team3
     /// </summary>
     public partial class MainWindow : Window
     {
+        private Core _core;
         private Point _point;
         private List<Point> _points;
 
         public MainWindow()
         {
+            _core = Core.GetCore();
+
             InitializeComponent();
+
+            MatchListForDrawing.ItemsSource = _core.CurrentTournament.Matches;
         }
 
         public int GetAmountOfParticipants(ParticipantsAmount participantsAmount)

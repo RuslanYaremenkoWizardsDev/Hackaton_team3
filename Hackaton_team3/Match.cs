@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Text;
 
 namespace Hackaton_team3
@@ -63,8 +64,8 @@ namespace Hackaton_team3
             }
         }
         public Status Status { get; set; }
-
         public Layers Layer { get; set; }
+        public Point Location { get; set; }
         public Match()
         {
 
@@ -78,7 +79,6 @@ namespace Hackaton_team3
             _result = string.Empty;
         }
         
-        //дописать конструктор со стрингой 
         private Match (string line)
         {
             string[] parsed = line.Split(",".ToCharArray());
@@ -87,7 +87,6 @@ namespace Hackaton_team3
             {
                 status = Status.NotStarted;
             }
-
         }
 
         public static Match Create(Participant participantOne, Participant participantTwo)
