@@ -6,9 +6,11 @@ namespace Hackaton_team3
 {
     public class Match
     {
+        public string participantId1 { get; set; }
+        public string participantId2 { get; set; }
         private Participant _participantOne;
         private Participant _participantTwo;
-        private string _result;
+        private string _result = "";
         public Participant ParticipantOne
         {
             get
@@ -64,6 +66,8 @@ namespace Hackaton_team3
             }
         }
         public Status Status { get; set; }
+
+        public int Id { get; set; }
         public Layers Layer { get; set; }
         public Point Location { get; set; }
         public Match()
@@ -82,12 +86,36 @@ namespace Hackaton_team3
         private Match (string line)
         {
             string[] parsed = line.Split(",".ToCharArray());
-            _result = parsed[0];
-            if(!Enum.TryParse(parsed[1], out Status status))
+            Id = int.Parse(parsed[0]);
+            //participantId1 = parsed[1];
+            //participantId2 = parsed[2];
+            Result = parsed[3];
+            if (!Enum.TryParse(parsed[4], out Status status))
             {
                 status = Status.NotStarted;
             }
+            Status = status;
+            //Id = Int32.Parse(parsed[5]);
+            if (!Int32.TryParse(parsed[5], out int id))
+            {
+                throw new FormatException();
+            }
+            Id = id;
+           
         }
+
+        public static Match Create(string line)
+        {
+            if (line!=null)
+            {
+                return new Match(line);
+            }
+            else
+            {
+                throw new ArgumentNullException();
+            }
+        }
+        
 
         public static Match Create(Participant participantOne, Participant participantTwo)
         {
@@ -105,17 +133,6 @@ namespace Hackaton_team3
             }
         }
 
-        public static Match Create(string line)
-        {
-            if (line != null)
-            {
-                return new Match(line);
-            }
-            else
-            {
-                throw new ArgumentNullException("Line is null");
-            }
-        }
 
         public override bool Equals(object obj)
         {
@@ -138,6 +155,23 @@ namespace Hackaton_team3
         public string Serialize()
         {
             StringBuilder sb = new StringBuilder();
+            if (ParticipantOne!=null)
+            {
+                sb.Append($"\"{ParticipantOne.Id}\",");
+            }
+            else
+            {
+                sb.Append($"\"0\",");
+            }
+            if (ParticipantTwo != null)
+            {
+                sb.Append($"\"{ParticipantTwo.Id}\",");
+            }
+            else
+            {
+                sb.Append($"\"0\",");
+            }
+
             sb.Append($"\"{_result}\",");
             sb.Append($"\"{Status.ToString()}\",");
             sb.Append($"\"{Layer.ToString()}\",");
