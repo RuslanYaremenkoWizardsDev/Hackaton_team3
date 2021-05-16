@@ -9,7 +9,7 @@ namespace Hackaton_team3
     public class Core
     {
         private static Core _core;
-        private string _connectionPath = "Data Source=DESKTOP-2SAV0E81;Initial Catalog=Hackaton_team3;Integrated Security=True";
+        private string _connectionPath = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=F:\C#\Hackaton_team3\Hackaton_team3\TournamtsDb.mdf;Integrated Security=True";
         private SqlConnection _sqlConnection;
         private LoggingLevelSwitch _loggerSwitch;
         public Logger DbLogger { get; private set; }
@@ -47,6 +47,30 @@ namespace Hackaton_team3
             }
 
             throw new ArgumentNullException("String connection path is null");
+        }
+
+        public bool InsertParticipantInToDb(string value)
+        {
+            if (value != null)
+            {
+                bool result = true;
+                try
+                {
+                    string query =$"insert dbo.[Participants] values({value})";
+                    SqlCommand command = new SqlCommand(query, _sqlConnection);
+                    int i = command.ExecuteNonQuery();
+                    DbLogger.Information($"{i}Query is done : {query}");
+                }
+                catch (Exception e)
+                {
+                    result = false;
+                    DbLogger.Error(e.ToString());
+                }
+
+                return result;
+            }
+
+            throw new ArgumentNullException("Value is null");
         }
 
         private void InitDbLogger()

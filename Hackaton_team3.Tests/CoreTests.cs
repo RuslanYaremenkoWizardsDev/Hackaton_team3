@@ -29,6 +29,16 @@ namespace Hackaton_team3.Tests
             Assert.IsTrue(core.ConnectDataBase());
         }
 
+        [TestCase(@"'TestName','Middle'")]
+        public void InsertParticipantInToDb_WhemValidTestPassed_ShouldAddNewValue(string value)
+        {
+            Core core = Core.GetCore();
+
+            core.ConnectDataBase();
+            core.InsertParticipantInToDb(value);
+
+            
+        }
         //[TestCase(null)]
         //public void GetCore_WhenInvalidTestPassed_ShouldReturnAgrumentNullException(string actualString)
         //{
