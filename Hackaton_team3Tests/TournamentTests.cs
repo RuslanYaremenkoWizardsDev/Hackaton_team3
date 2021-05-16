@@ -19,11 +19,12 @@ namespace Hackaton_team3.Tests
             Assert.AreEqual(new DateTime(yearEnd, monthEnd, dayEnd), test.EndRegistration);
         }
 
+        [TestCase(null)]
         public void SerializeConstructorTest_ShouldReturnArgumentNullException(string serializedString)
         {
             Assert.Throws<ArgumentNullException>(() => Tournament.Create(serializedString));
         }
-        [TestCase(null)]
+
         [TestCase("1", "1,,Tournament,,2020.06.01,2020.05.01,Middle,Bo1,NotStarted")]
         public void SerializeConstructorTest(string actualName,string actualLine)
         {
@@ -33,6 +34,7 @@ namespace Hackaton_team3.Tests
             Assert.That(actual, Is.TypeOf<Tournament>());
             Assert.AreEqual(expected,actual);
         }
+
         [TestCase(null)]
         public void Create_WhenInvalidTestPassed_ShouldReturnArgumentNullExeption(string actualName)
         {

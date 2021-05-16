@@ -71,22 +71,26 @@ namespace Hackaton_team3
                 }
             }
         }
-        List<Match> matches; //Не сериализируется
+        public List<Match> Matches { get; set; }
         public Scenario Scenario { get; set; }
 
         public Status Status { get; set; }
 
+        public Tournament()
         {
+
+        }
+
         public Tournament(string name, DateTime start, DateTime endRegistration)
         {
             Name = name;
             Start = start;
             EndRegistration = endRegistration;
-            matches = new List<Match>();
+            Matches = new List<Match>();
             Mode = TournamentMode.Tournament;
             Description = string.Empty;
             Division = Division.Middle;
-            points = new Dictionary<Participant, int>();
+            Points = new Dictionary<Participant, int>();
             Location = string.Empty;
             Scenario = Scenario.Bo1;
             Status = Status.NotStarted;
