@@ -10,6 +10,8 @@ namespace Hackaton_team3
         private string _name;
         private string _description;
         private string _location;
+
+        public ParticipantsAmount Amount { get; set; } 
         public TournamentMode Mode { get; set; }
         public string Name
         {
