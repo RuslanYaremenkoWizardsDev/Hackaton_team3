@@ -5,9 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Hackaton_team3"
         mc:Ignorable="d"
-        Title="MainWindow" Height="700
-        " Width="1200
-        ">
+        Title="MainWindow" Height="700" Width="1200">
     <Grid Margin="0,0,-0.4,0.4">
         <Grid.RowDefinitions>
             <RowDefinition Height="93*"/>
