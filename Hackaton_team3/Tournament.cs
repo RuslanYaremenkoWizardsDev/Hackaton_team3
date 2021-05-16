@@ -50,47 +50,45 @@ namespace Hackaton_team3
         public DateTime Start { get; set; }
         public DateTime EndRegistration { get; set; }
         public Division Division { get; set; }
-        Dictionary<Participant, int> points;
-        public Division tournamentDivision { get; set; }
+        public Dictionary<Participant, int> Points { get; set; }
         public string Location
         {
-            get { return _location; }
+            get
+            {
+                return _location;
+            }
             set
             {
-                if (value == null)
+                if (value != null)
                 {
-                    throw new ArgumentNullException();
+                    _location = value;
                 }
                 else
                 {
-                    _location = value;
+                    throw new ArgumentNullException();
                 }
             }
         }
 
-        public Tournament()
-        {
-
-        }
-
-        public Tournament(string name, DateTime start, DateTime endRegistration)
+        private Tournament(string name, DateTime start, DateTime endRegistration)
         {
             Name = name;
             Start = start;
             EndRegistration = endRegistration;
+            Location = string.Empty;
+            Points = new Dictionary<Participant, int>();
+            Division = Division.Middle;
         }
 
-        //public void AddPointsToTeam(Participant team, int p)
-        //{
-        //    if (!points.ContainsKey(team))
-        //    {
-        //        points.Add(team, p);
-        //    }
-        //    else
-        //    {
-        //        points[team] = points[team] + p;
-        //    }
-        //}
+        public static Tournament Create(string name, DateTime start, DateTime endRegistration)
+        {
+            if (name != null)
+            {
+                return new Tournament(name, start, endRegistration);
+            }
+
+            throw new ArgumentNullException("Name is null");
+        }
 
         public override bool Equals(object obj)
         {
@@ -98,15 +96,17 @@ namespace Hackaton_team3
             if (obj is Tournament)
             {
                 Tournament temp = (Tournament)obj;
-                if (Name == temp.Name && Description == temp.Description && Start == temp.Start && EndRegistration == temp.EndRegistration && Division == temp.Division)
+                if (Name == temp.Name 
+                    && Description == temp.Description 
+                    && Start == temp.Start 
+                    && EndRegistration == temp.EndRegistration 
+                    && Division == temp.Division)
                 {
                     result = true;
                 }
-
             }
+
             return result;
-
-
         }
     }
 }

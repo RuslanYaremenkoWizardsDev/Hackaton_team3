@@ -9,6 +9,7 @@ namespace Hackaton_team3
     public class Layers
     {
         private int _horisontal;
+        private int _vertical;
         public int Horisontal
         {
             get
@@ -17,34 +18,18 @@ namespace Hackaton_team3
             }
             set
             {
-                if (value > 0)
-                {
-                    _horisontal = value;
-                }
-                else
-                {
-                    throw new ArgumentException();
-                }
+                _horisontal = value > 0 ? value : 1;
             }
         }
-
-        private int _vertical;
         public int Vertical
         {
             get
             {
-                return _horisontal;
+                return _vertical;
             }
             set
             {
-                if (value > 0)
-                {
-                    _vertical = value;
-                }
-                else
-                {
-                    throw new ArgumentException("Incorrect value");
-                }
+                _vertical = value > 0 ? value : 1;
             }
         }
 
@@ -56,11 +41,11 @@ namespace Hackaton_team3
 
         public override string ToString()
         {
+            StringBuilder result = new StringBuilder();
+            result.Append($"{Horisontal},{Vertical}");
 
-            return $"{_horisontal}, {_vertical}";
-
+            return result.ToString();
         }
-
     }
 }
 
