@@ -13,35 +13,7 @@ namespace ProgramCore
         private SqlConnection _sqlConnection;
         private LoggingLevelSwitch _loggerSwitch;
         public Logger DbLogger { get; private set; }
-        public string ConnectionPath
-        {
-            get
-            {
-                return _connectionPath;
-            }
-            set
-            {
-                if (value != null)
-                {
-                    _connectionPath = value;
-                }
-                else
-                {
-                    throw new ArgumentNullException("Value is null");
-                }
-            }
-        }
-
-        private Core()
-        {
-
-        }
-
-        private Core(string connectionPath)
-        {
-            ConnectionPath = connectionPath;
-        }
-
+        
         public static Core GetCore()
         {
             if (_core == null)
@@ -50,25 +22,6 @@ namespace ProgramCore
             }
 
             return _core;
-        }
-
-        public static Core GetCore(string connectionPath)
-        {
-            if (connectionPath != null)
-            {
-                if (_core == null)
-                {
-                    _core = new Core(connectionPath);
-                }
-                else
-                {
-                    _core.ConnectionPath = connectionPath;
-                }
-
-                return _core;
-            }
-
-            throw new ArgumentNullException("String connection path is null");
         }
 
         public bool ConnectDataBase()

@@ -1,139 +1,79 @@
-﻿using Hackaton_team3;
+﻿using System;
 using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace Hackaton_team3Tests
+namespace Hackaton_team3.Tests
 {
     class MatchTests
     {
-        [SetUp]
-        public void Setup()
+        [TestCase("Name",Division.Advanced)]
+        [TestCase("Name", Division.Beginner)]
+        [TestCase("Name", Division.Middle)]
+        public void Create_WhenValidTestPassed_ShouldReturnValidMatch(string name,Division division)
         {
+            Participant participant = Participant.Create(name, division);
+            Match actual = Match.Create(participant, participant);
+
+            Assert.NotNull(actual);
+            Assert.NotNull(actual.ParticipantOne);
+            Assert.NotNull(actual.ParticipantTwo);
         }
 
-        [Test]
-
-        public void ConstructorTest1()
+        [TestCase("name1",Division.Advanced,"name1",Division.Advanced,true)]
+        [TestCase("name1", Division.Beginner, "name1", Division.Beginner, true)]
+        [TestCase("name1", Division.Middle, "name1", Division.Middle, true)]
+        [TestCase("name1", Division.Advanced, "name1", Division.Beginner, false)]
+        [TestCase("name2", Division.Advanced, "name1", Division.Advanced, false)]
+        [TestCase("name2", Division.Beginner, "name1", Division.Advanced, false)]
+        public void Equals_WhenValidTestPassed_ShouldReturnTrueOrFalse(string actualName, Division actualDivision,
+            string expectedName, Division expectedDivision, bool expected)
         {
+            Participant actualParticipant = Participant.Create(actualName, actualDivision);
+            Match actualMatch = Match.Create(actualParticipant, actualParticipant);
+            Participant expectedParticipant = Participant.Create(expectedName, expectedDivision);
+            Match expectedMatch = Match.Create(expectedParticipant, expectedParticipant);
 
-            Participant participant1 = new Participant("1", Division.Advanced);
-            Participant participant2 = new Participant("2", Division.Advanced);
-            Participant participant1Expect = new Participant("1", Division.Advanced);
-            Participant participant2Expect = new Participant("2", Division.Advanced);
-            Match actualMatch = new Match(participant1, participant2);
-            Match expectedMatch = new Match(participant1Expect, participant2Expect);
-            expectedMatch.Result = "0:0";
-            expectedMatch.Status = Status.NotStarted;
-            Assert.AreEqual(participant1Expect, participant1);
-            Assert.AreEqual(participant2Expect, participant2);
+            bool actual = actualMatch.Equals(expectedMatch);
+
+            Assert.AreEqual(expected, actual);
         }
 
-        [Test]
-
-        public void ConstructorTest2()
+        [TestCase("10:10","10:10")]
+        [TestCase("111","111")]
+        public void SetResult_WhenValidTestPassed_ShouldSetCurrentResult(string actualString,string expected)
         {
+            Participant actualParticipant = Participant.Create(string.Empty, Division.Advanced);
+            Match actualMatch = Match.Create(actualParticipant, actualParticipant);
+            actualMatch.Result = actualString;
 
-            Participant participant1 = new Participant("1", Division.Beginner);
-            Participant participant2 = new Participant("2", Division.Beginner);
-            Participant participant1Expect = new Participant("1", Division.Beginner);
-            Participant participant2Expect = new Participant("2", Division.Beginner);
-            Match actualMatch = new Match(participant1, participant2);
-            Match expectedMatch = new Match(participant1Expect, participant2Expect);
-            expectedMatch.Result = "0:0";
-            expectedMatch.Status = Status.NotStarted;
-            Assert.AreEqual(participant1Expect, participant1);
-            Assert.AreEqual(participant2Expect, participant2);
+            Assert.AreEqual(expected, actualMatch.Result);
         }
 
-        [Test]
-
-        public void ConstructorTest3()
+        [TestCase(null)]
+        public void SetResult_WhenInvalidTestPassed_ShouldReturnArgumentNullException(string actualString)
         {
+            Participant actualParticipant = Participant.Create(string.Empty, Division.Advanced);
+            Match actualMatch = Match.Create(actualParticipant, actualParticipant);
 
-            Participant participant1 = new Participant("1", Division.Middle);
-            Participant participant2 = new Participant("2", Division.Middle);
-            Participant participant1Expect = new Participant("1", Division.Middle);
-            Participant participant2Expect = new Participant("2", Division.Middle);
-            Match actualMatch = new Match(participant1, participant2);
-            Match expectedMatch = new Match(participant1Expect, participant2Expect);
-            expectedMatch.Result = "0:0";
-            expectedMatch.Status = Status.NotStarted;
-            Assert.AreEqual(participant1Expect, participant1);
-            Assert.AreEqual(participant2Expect, participant2);
+            Assert.Throws<ArgumentNullException>(() => actualMatch.Result = actualString);
         }
 
-        [Test]
-
-        public void EqualsTest1()
+        [TestCase(null)]
+        public void SetParitcipant_WhenInvalidTestPassed_ShouldReturnArgumentNullException(Participant actualPaticipant)
         {
-            Participant participant1 = new Participant("1", Division.Middle);
-            Participant participant2 = new Participant("2", Division.Middle);
-            Participant participant1Expect = new Participant("1", Division.Middle);
-            Participant participant2Expect = new Participant("2", Division.Middle);
-            Match first = new Match(participant1,participant2);
-            first.Result = "1:0";
-            first.Status = Status.InProgress;
-            Match second = new Match(participant1Expect, participant2Expect);
-            second.Result = "1:0";
-            second.Status = Status.InProgress;
-            bool act = second.Equals(first);
-            Assert.AreEqual(true, act);
+            Participant actualParticipant = Participant.Create(string.Empty, Division.Advanced);
+            Match actualMatch = Match.Create(actualParticipant, actualParticipant);
+
+            Assert.Throws<ArgumentNullException>(() => actualMatch.ParticipantOne = actualPaticipant);
+            Assert.Throws<ArgumentNullException>(() => actualMatch.ParticipantTwo = actualPaticipant);
         }
 
-        [Test]
-
-        public void EqualsTest2()
+        [TestCase(null)]
+        public void Create_WhenInvalidTestPassed_ShouldReturnArgumentNullException(Participant actualPaticipant)
         {
-            Participant participant1 = new Participant("1", Division.Middle);
-            Participant participant2 = new Participant("2", Division.Middle);
-            Participant participant1Expect = new Participant("1", Division.Middle);
-            Participant participant2Expect = new Participant("2", Division.Middle);
-            Match first = new Match(participant1, participant2);
-            first.Result = "2:0";
-            first.Status = Status.InProgress;
-            Match second = new Match(participant1Expect, participant2Expect);
-            second.Result = "1:0";
-            second.Status = Status.InProgress;
-            bool act = second.Equals(first);
-            Assert.AreEqual(false, act);
-        }
+            Participant actualParticipant = Participant.Create(string.Empty, Division.Advanced);
 
-        [Test]
-
-        public void EqualsTest3()
-        {
-            Participant participant1 = new Participant("1", Division.Middle);
-            Participant participant2 = new Participant("2", Division.Middle);
-            Participant participant1Expect = new Participant("1", Division.Middle);
-            Participant participant2Expect = new Participant("2", Division.Middle);
-            Match first = new Match(participant1, participant2);
-            first.Result = "1:0";
-            first.Status = Status.InProgress;
-            Match second = new Match(participant1Expect, participant2Expect);
-            second.Result = "1:0";
-            second.Status = Status.Completed;
-            bool act = second.Equals(first);
-            Assert.AreEqual(false, act);
-        }
-
-        [Test]
-
-        public void EqualsTest4()
-        {
-            Participant participant1 = new Participant("1", Division.Middle);
-            Participant participant2 = new Participant("2", Division.Middle);
-            Participant participant1Expect = new Participant("2", Division.Middle);
-            Participant participant2Expect = new Participant("2", Division.Middle);
-            Match first = new Match(participant1, participant2);
-            first.Result = "2:0";
-            first.Status = Status.InProgress;
-            Match second = new Match(participant1Expect, participant2Expect);
-            second.Result = "1:0";
-            second.Status = Status.InProgress;
-            bool act = second.Equals(first);
-            Assert.AreEqual(false, act);
+            Assert.Throws<ArgumentNullException>(() => Match.Create(actualPaticipant, actualParticipant));
+            Assert.Throws<ArgumentNullException>(() => Match.Create(actualParticipant, actualPaticipant));
         }
     }
 }

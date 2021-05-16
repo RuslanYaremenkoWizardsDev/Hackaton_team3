@@ -6,15 +6,23 @@ namespace Hackaton_team3
     public class Participant : ISerializableToDB
     {
         private string _name;
-        public string Name {
-            get { return _name; }
-            set {
-                if (value == null)
+        public string Name
+        {
+            get
+            {
+                return _name;
+            }
+            set
+            {
+                if (value != null)
                 {
-                    throw new ArgumentNullException();
+                    _name = value;
                 }
-                else _name = value;            
-             }
+                else
+                {
+                    throw new ArgumentNullException("Value is null");
+                }
+            }
         }
         public Division Division { get; set; }
 
@@ -47,6 +55,17 @@ namespace Hackaton_team3
             Name = name;
             Division = d;
         }
+
+        public static Participant Create(string name, Division division)
+        {
+            if (name != null)
+            {
+                return new Participant(name, division);
+            }
+
+            throw new ArgumentNullException("String name is null");
+        }
+
         public override bool Equals(object obj)
         {
             bool result = false;
@@ -58,6 +77,7 @@ namespace Hackaton_team3
                     result = true;
                 }
             }
+
             return result;
         }
 

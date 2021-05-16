@@ -10,39 +10,85 @@ namespace Hackaton_team3
     {
         private Participant _participantOne;
         private Participant _participantTwo;
-        private Status _status;
         private string _result;
-        
         public Participant ParticipantOne
         {
-            get { return _participantOne; }
-            set { _participantOne = value; }
+            get
+            {
+                return _participantOne;
+            }
+            set
+            {
+                if (value != null)
+                {
+                    _participantOne = value;
+                }
+                else
+                {
+                    throw new ArgumentNullException("Value is null");
+                }
+            }
         }
-       
         public Participant ParticipantTwo
         {
-            get { return _participantTwo; }
-            set { _participantTwo = value; }
+            get
+            {
+                return _participantTwo;
+            }
+            set
+            {
+                if (value != null)
+                {
+                    _participantTwo = value;
+                }
+                else
+                {
+                    throw new ArgumentNullException("Value is null");
+                }
+            }
         }
-      
         public string Result
         {
-            get { return _result; }
-            set { _result = value; }
+            get
+            {
+                return _result;
+            }
+            set
+            {
+                if (value != null)
+                {
+                    _result = value;
+                }
+                else
+                {
+                    throw new ArgumentNullException("Value is null");
+                }
+            }
         }
-      
-        public Status Status
+        public Status Status { get; set; }
+
+        private Match(Participant participantOne, Participant participantTwo)
         {
-            get { return _status; }
-            set { _status = value; }
+            ParticipantOne = participantOne;
+            ParticipantTwo = participantTwo;
+            Status = Status.NotStarted;
+            _result = string.Empty;
         }
-       
-        public Match(Participant participant1, Participant participant2)
+
+        public static Match Create(Participant participantOne, Participant participantTwo)
         {
-            _participantOne = ParticipantOne = participant1;
-            _participantTwo = ParticipantTwo = participant2;
-            _status = Status.NotStarted;
-            _result = "0:0";
+            if (participantOne != null && participantTwo != null)
+            {
+                return new Match(participantOne, participantTwo);
+            }
+            else if (participantOne == null)
+            {
+                throw new ArgumentNullException("Participan one is null");
+            }
+            else
+            {
+                throw new ArgumentNullException("Participan two is null");
+            }
         }
 
         public override bool Equals(object obj)
@@ -51,18 +97,17 @@ namespace Hackaton_team3
             if (obj is Match)
             {
                 Match temp = (Match)obj;
-                if (_participantOne.Equals(temp._participantOne) &&
-                    _participantTwo.Equals(temp._participantTwo)
-                    && _result.Equals(temp._result) && _status == temp._status)
+                if (_participantOne.Equals(temp._participantOne)
+                    && _participantTwo.Equals(temp._participantTwo)
+                    && _result.Equals(temp._result)
+                    && Status == temp.Status)
                 {
                     result = true;
                 }
             }
-           return result;
+
+            return result;
         }
-
- 
-
 
     }
 }
