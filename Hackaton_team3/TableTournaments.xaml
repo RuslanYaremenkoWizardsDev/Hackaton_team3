@@ -1,0 +1,29 @@
+﻿<Window x:Class="Hackaton_team3.TableTournaments"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Hackaton_team3"
+        mc:Ignorable="d"
+        Title="TableTournaments" Height="700" Width="1200">
+    <Grid Background="#00192A">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="53*"/>
+            <ColumnDefinition Width="134*"/>
+            <ColumnDefinition Width="53*"/>
+        </Grid.ColumnDefinitions>
+        <Button Content="TOURNAMENTS" Foreground =" White" HorizontalAlignment="Left" Height="47" Margin="4,27,0,0" VerticalAlignment="Top" Width="279" Grid.Column="1" Background="#FF868788" FontSize="22"/>
+        <Button Content="STATISTICS" Foreground =" White" HorizontalAlignment="Left" Margin="391,27,0,382" Width="279" Grid.Column="1" Background="#FF4377B3" FontSize="22"/>
+        <Button Content="My account" Foreground =" White" Grid.Column="2" Height="47" Margin="49,27,50,0" VerticalAlignment="Top" FontSize="22" Background="#FF4377B3" FontFamily="Bahnschrift Light"/>
+        <DataGrid Margin="49,280,49,48" Grid.RowSpan="2" Grid.ColumnSpan="3"/>
+        <Label Content="SEARCH BY:" Foreground =" White"  HorizontalAlignment="Left" Height="42" Margin="49,238,0,0" VerticalAlignment="Top" Width="149" FontSize="24" FontWeight="Bold" FontFamily="Roboto"/>
+        <Button Content="START DATE" HorizontalAlignment="Left" Height="37" Margin="222,238,0,0" VerticalAlignment="Top" Width="141" Grid.ColumnSpan="2" FontSize="16" Background="#FF4377B3" FontFamily="Roboto"/>
+        <Button Content="TYPES" HorizontalAlignment="Left" Height="37" Margin="103,238,0,0" VerticalAlignment="Top" Width="143" Grid.Column="1" FontSize="16" Background="#FF4377B3" FontFamily="Roboto"/>
+        <Button Content="PLAYERS" HorizontalAlignment="Left" Height="37" Margin="251,238,0,0" VerticalAlignment="Top" Width="143" Grid.Column="1" FontSize="16" Background="#FF4377B3" FontFamily="Roboto"/>
+
+    </Grid>
+</Window>
