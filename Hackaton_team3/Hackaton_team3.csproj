@@ -76,6 +76,9 @@
     </ApplicationDefinition>
     <Compile Include="Match.cs" />
     <Compile Include="Participant.cs" />
+    <Compile Include="Registration.xaml.cs">
+      <DependentUpon>Registration.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Status.cs" />
     <Compile Include="Tournament.cs" />
     <Page Include="MainWindow.xaml">
@@ -92,6 +95,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Registration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
