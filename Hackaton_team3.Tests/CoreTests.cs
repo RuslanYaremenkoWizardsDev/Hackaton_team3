@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
-using System.Collections.Generic;
-
+using System.Collections.Generic;
+
 namespace Hackaton_team3.Tests
 {
     public class CoreTests
@@ -26,7 +26,7 @@ namespace Hackaton_team3.Tests
         {
             Core core = Core.GetCore();
 
-            core.ConnectDataBase();
+            core.ConnectToTournamntsDatabase();
             string[] actual = core.GetParticipantFromDbByMatch(matchId);
 
             string[] expected = new string[2];
@@ -50,14 +50,12 @@ namespace Hackaton_team3.Tests
         {
             Core core = Core.GetCore();
 
-            Assert.IsTrue(core.ConnectDataBase());
-        }
-
+            Assert.IsTrue(core.ConnectToTournamntsDatabase());
+        public void TemporaryTestRemoveLater()
         [Test]
-        public void TemporaryTestRemoveLater()
-        {
-            Core core = Core.GetCore();
-            core.Innitialize();
+        {
+            Core core = Core.GetCore();
+            core.Innitialize();
         }
 
         [TestCase(@"'TestName','Middle'")]
@@ -67,44 +65,41 @@ namespace Hackaton_team3.Tests
 
             core.ConnectDataBase();
             core.InsertParticipantInToDb(value);   
-        }
-
         [TestCase(@"'1','','Tournament','','2020.06.01','2020.05.01','Middle','Bo1','NotStarted'")]
         public void InsertTournamentToDB_WhenValidTestPassed_ShouldAddNewValue(string value)
-        {
             Core core = Core.GetCore();
+        {
             core.ConnectDataBase();
-            core.InsertTournamentDb(value);
-        }
-
-        [TestCase(@"")]
+            core.InsertTournamentDb(value);
+
+        }
         public void InsertMatchToDB_WhenValidTestPassed_ShouldAddNewValue(string value)
+        [TestCase(@"")]
         {
             Core core = Core.GetCore();
             core.ConnectDataBase();
-            core.InsertMatchDb(value);
-        }
-
+        }
         [TestCase()]
         public void SelectTournamentsFromToDb_WhemValidTestPassed_ShouldReturnListOfTournaments()
         {
             Core core = Core.GetCore();
             core.ConnectDataBase();
+            core.InsertMatchDb(value);
 
             List<string> serializedTournaments = core.GetSerializedtournamentsFromDB();
  
             Assert.IsTrue(serializedTournaments.Count>0);
-        }
-
-
+        }
+
+
         [TestCase("2")]
         public void SelectMatchFromToDb_WhemValidTestPassed_ShouldReturnListOfMatch(string tournamentId)
         {
             Core core = Core.GetCore();
             core.ConnectDataBase();
 
-            List<string> serializedMatches = core.GetSerializedMatchesByTournamentFromDB(tournamentId);
-
+            List<string> serializedMatches = core.GetSerializedMatchesByTournamentFromDB(tournamentId);
+
             Assert.IsTrue(serializedMatches.Count > 0);
         }
         //[TestCase(null)]
