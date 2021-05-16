@@ -24,5 +24,12 @@ namespace Hackaton_team3
         {
             InitializeComponent();
         }
+
+        private void Button_Autorisation_Window_Click(object sender, RoutedEventArgs e)
+        {
+            AutorisationWindow autorisationWindow = new AutorisationWindow();
+            autorisationWindow.Show();
+            this.Hide();
+        }
     }
 }
