@@ -77,6 +77,18 @@ namespace Hackaton_team3
             Status = Status.NotStarted;
             _result = string.Empty;
         }
+        
+        //дописать конструктор со стрингой 
+        private Match (string line)
+        {
+            string[] parsed = line.Split(",".ToCharArray());
+            _result = parsed[0];
+            if(!Enum.TryParse(parsed[1], out Status status))
+            {
+                status = Status.NotStarted;
+            }
+
+        }
 
         public static Match Create(Participant participantOne, Participant participantTwo)
         {
@@ -91,6 +103,18 @@ namespace Hackaton_team3
             else
             {
                 throw new ArgumentNullException("Participan two is null");
+            }
+        }
+
+        public static Match Create(string line)
+        {
+            if (line != null)
+            {
+                return new Match(line);
+            }
+            else
+            {
+                throw new ArgumentNullException("Line is null");
             }
         }
 
@@ -112,6 +136,13 @@ namespace Hackaton_team3
             return result;
         }
 
-       
+        public string Serialize()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append($"\"{_result}\",");
+            sb.Append($"\"{Status.ToString()}\",");
+            sb.Append($"\"{Layer.ToString()}\",");
+            return sb.ToString();
+        }
     }
 }
