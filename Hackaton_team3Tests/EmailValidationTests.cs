@@ -8,9 +8,6 @@ namespace Hackaton_team3.Tests
 {
     class EmailValidationTests
     {
-        public void Setup()
-        {
-        }
 
         [TestCase("egorusdnepr@gmail.com", true)]
         [TestCase("andreyzaycev12041961@gmail.com", true)]

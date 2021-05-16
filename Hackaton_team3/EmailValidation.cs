@@ -26,7 +26,7 @@ namespace Hackaton_team3
                 return result;
             }
 
-            throw new ArgumentNullException("Email is not null.");
+            throw new ArgumentNullException("Email is null.");
         }
     }
 }
