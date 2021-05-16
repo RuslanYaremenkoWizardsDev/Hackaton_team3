@@ -9,10 +9,15 @@ namespace Hackaton_team3
     public class Core
     {
         private static Core _core;
-        private string _connectionPath = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=F:\C#\Hackaton_team3\Hackaton_team3\TournamtsDb.mdf;Integrated Security=True";
+        private string _connectionPath = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Хакатон\Hackaton_team3\TournamtsDb.mdf;Integrated Security=True";
         private SqlConnection _sqlConnection;
         private LoggingLevelSwitch _loggerSwitch;
         public Logger DbLogger { get; private set; }
+
+        private Core()
+        {
+            ConnectDataBase();
+        }
 
         public static Core GetCore()
         {
@@ -49,58 +54,134 @@ namespace Hackaton_team3
             throw new ArgumentNullException("String connection path is null");
         }
 
-        public string[] GetParticipantFromDb(string matchId)
+        public bool TableHasValues(string tableName)
         {
-            if (matchId != null)
-            {
-                string[] result = new string[2];
+            bool res = false;
 
-                try
+            string query = $"select * from [dbo].[{tableName}]";
+            SqlCommand command = new SqlCommand(query, _sqlConnection);
+            SqlDataReader reader = command.ExecuteReader();
+
+            if (reader.HasRows)
+            {
+                res = true;
+            }
+            reader.Close();
+            DbLogger.Information($"Query is done : {query}");
+            return res;
+        }
+        public string[] GetParticipantFromDbByMatch(string matchId)
+        {
+
+            if (TableHasValues("Matches") && TableHasValues("Participants"))
+            {
+                if (matchId != null)
                 {
-                    string query = $"select * from [dbo].[Participants] where id = (select [ParticipantOne] from [dbo].[Matches] where [dbo].[Matches].[ID]={matchId}) ";
-                    SqlCommand command = new SqlCommand(query, _sqlConnection);
-                    SqlDataReader reader = command.ExecuteReader();
-                    
-                        if (reader.HasRows)
+                    string[] result = new string[2];
+
+                    try
+                    {
+                        string query = $"select * from [dbo].[Participants] where id = (select [ParticipantOne] from [dbo].[Matches] where [dbo].[Matches].[ID]={matchId}) ";
+                        SqlCommand command = new SqlCommand(query, _sqlConnection);
+                        SqlDataReader reader = command.ExecuteReader();
+
+                        if (reader.Read())
                         {
-                            reader.Read();
                             result[0] = $"{reader[1]},{reader[2]}";
                         }
-                    
-                    DbLogger.Information($"Query is done : {query}");
-                }
-                catch (Exception e)
-                {
-                    result[0] = string.Empty;
-                    DbLogger.Error(e.ToString());
-                }
+                        reader.Close();
+                        DbLogger.Information($"Query is done : {query}");
+                    }
+                    catch (Exception e)
+                    {
+                        result[0] = string.Empty;
+                        DbLogger.Error(e.ToString());
+                    }
 
-                try
-                {
-                    string query = $"select * from [dbo].[Participants] where id = (select [ParticipantTwo] from [dbo].[Matches] where [dbo].[Matches].[ID]={matchId})";
-                    SqlCommand command = new SqlCommand(query, _sqlConnection);
-                    SqlDataReader reader = command.ExecuteReader();
-                    
-                        if (reader.HasRows)
+                    try
+                    {
+                        string query = $"select * from [dbo].[Participants] where id = (select [ParticipantTwo] from [dbo].[Matches] where [dbo].[Matches].[ID]={matchId})";
+                        SqlCommand command = new SqlCommand(query, _sqlConnection);
+                        SqlDataReader reader = command.ExecuteReader();
+
+                        if (reader.Read())
                         {
-                            reader.Read();
                             result[1] = $"{reader[1]},{reader[2]}";
                         }
-                    
-                    DbLogger.Information($"Query is done : {query}");
+                        reader.Close();
+                        DbLogger.Information($"Query is done : {query}");
+                    }
+                    catch (Exception e)
+                    {
+                        result[1] = string.Empty;
+                        DbLogger.Error(e.ToString());
+                    }
+
+                    return result;
                 }
-                catch (Exception e)
+                else
                 {
-                    result[1] = string.Empty;
-                    DbLogger.Error(e.ToString());
+                    throw new ArgumentNullException("Value is null");
                 }
 
-                return result;
-            }
+                if (matchId != null)
+                {
+                    string[] result = new string[2];
 
-            throw new ArgumentNullException("Value is null");
+                    try
+                    {
+                        string query = $"select * from [dbo].[Participants] where id = (select [ParticipantOne] from [dbo].[Matches] where [dbo].[Matches].[ID]={matchId}) ";
+                        SqlCommand command = new SqlCommand(query, _sqlConnection);
+                        SqlDataReader reader = command.ExecuteReader();
+
+                        if (reader.Read())
+                        {
+                            result[0] = $"{reader[0]},{reader[1]}";
+                        }
+                        reader.Close();
+                        DbLogger.Information($"Query is done : {query}");
+                    }
+                    catch (Exception e)
+                    {
+                        result[0] = string.Empty;
+                        DbLogger.Error(e.ToString());
+                    }
+
+                    try
+                    {
+                        string query = $"select * from [dbo].[Participants] where id = (select [ParticipantTwo] from [dbo].[Matches] where [dbo].[Matches].[ID]={matchId})";
+                        SqlCommand command = new SqlCommand(query, _sqlConnection);
+                        SqlDataReader reader = command.ExecuteReader();
+
+                        if (reader.Read())
+                        {
+                            result[1] = $"{reader[1]},{reader[2]}";
+                        }
+                        reader.Close();
+                        DbLogger.Information($"Query is done : {query}");
+                    }
+                    catch (Exception e)
+                    {
+                        result[1] = string.Empty;
+                        DbLogger.Error(e.ToString());
+                    }
+
+                    return result;
+                }
+                else
+                {
+                    throw new ArgumentNullException("Value is null");
+                }
+
+            }
+            else
+            {
+                throw new ArgumentNullException("Table is empty");
+            }
+           
         }
 
+      
         public bool InsertParticipantInToDb(string value)
         {
             if (value != null)

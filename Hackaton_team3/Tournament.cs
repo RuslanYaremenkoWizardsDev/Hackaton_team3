@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Hackaton_team3
 {
-    public class Tournament
+    public class Tournament : ISerializableToDB
     {
         private string _name;
         private string _description;

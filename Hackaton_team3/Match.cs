@@ -2,7 +2,7 @@
 
 namespace Hackaton_team3
 {
-    public class Match
+    public class Match : ISerializableToDB
     {
         private Participant _participantOne;
         private Participant _participantTwo;
@@ -63,6 +63,7 @@ namespace Hackaton_team3
         }
         public Status Status { get; set; }
 
+        public Layers Layer { get; set; }
         public Match()
         {
 
@@ -108,6 +109,11 @@ namespace Hackaton_team3
             }
 
             return result;
+        }
+
+        public string Serialize()
+        {
+            throw new NotImplementedException();
         }
     }
 }
