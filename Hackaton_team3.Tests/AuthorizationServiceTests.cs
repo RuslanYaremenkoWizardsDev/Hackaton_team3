@@ -1,8 +1,5 @@
-﻿using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-
-
+﻿using System;
+using NUnit.Framework;
 
 namespace Hackaton_team3.Tests
 {
@@ -14,7 +11,7 @@ namespace Hackaton_team3.Tests
             Assert.Throws<ArgumentNullException>(() => AuthorizationService.DoesLoginExist(actualEmail));
         }
 
-        [TestCase(null,null)]
+        [TestCase(null, null)]
         [TestCase(null, "")]
         [TestCase("", null)]
         public void IsPasswordCorrect_ShouldReturnArgumentNullException(string actualEmail, string actualPassword)

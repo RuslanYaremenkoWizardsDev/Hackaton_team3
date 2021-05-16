@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Hackaton_team3
 {
@@ -99,8 +97,6 @@ namespace Hackaton_team3
 
         private Tournament(string line)
         {
-            
-
             string[] parsed = line.Split(",".ToCharArray());
             Name = parsed[0];
             Description = parsed[1];
@@ -108,6 +104,7 @@ namespace Hackaton_team3
             {
                 tournamentMode = TournamentMode.Tournament;
             }
+
             Mode = tournamentMode;
             _location = parsed[3];
             Start = DateTime.ParseExact(parsed[4], "yyyy.MM.dd", CultureInfo.InvariantCulture);
@@ -116,16 +113,19 @@ namespace Hackaton_team3
             {
                 tournamentDivision = Division.Middle;
             }
+
             Division = tournamentDivision;
             if (!Enum.TryParse(parsed[7], out Scenario tournamentScenario))
             {
-                tournamentScenario = Scenario.Bo1;             
+                tournamentScenario = Scenario.Bo1;
             }
+
             Scenario = tournamentScenario;
             if (!Enum.TryParse(parsed[8], out Status tournamentStatus))
             {
                 tournamentStatus = Status.NotStarted;
             }
+
             Status = tournamentStatus;
         }
 
@@ -157,10 +157,10 @@ namespace Hackaton_team3
             if (obj is Tournament)
             {
                 Tournament temp = (Tournament)obj;
-                if (Name == temp.Name 
-                    && Description == temp.Description 
-                    && Start == temp.Start 
-                    && EndRegistration == temp.EndRegistration 
+                if (Name == temp.Name
+                    && Description == temp.Description
+                    && Start == temp.Start
+                    && EndRegistration == temp.EndRegistration
                     && Division == temp.Division)
                 {
                     result = true;
@@ -169,17 +169,6 @@ namespace Hackaton_team3
             return result;
         }
 
-        public void AddMatch(Match Match)
-        {
-            if (Match == null)
-            {
-                throw new ArgumentNullException();
-            }
-            else
-            {
-                Matches.Add(Match);
-            }
-        }
         public string Serialize()
         {
             StringBuilder sb = new StringBuilder();

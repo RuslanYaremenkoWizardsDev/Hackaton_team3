@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text;
 
 namespace Hackaton_team3
@@ -40,7 +41,7 @@ namespace Hackaton_team3
 
         public static Participant Create(string line)
         {
-            if (line!=null)
+            if (line != null)
             {
                 return new Participant(line);
             }
@@ -87,7 +88,5 @@ namespace Hackaton_team3
             sb.Append($"\"{_name}\",\"{Division.ToString()}\"");
             return sb.ToString();
         }
-
- 
     }
 }
