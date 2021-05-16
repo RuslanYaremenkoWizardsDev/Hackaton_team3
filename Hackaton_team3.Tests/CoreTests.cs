@@ -25,7 +25,7 @@ namespace Hackaton_team3.Tests
         {
             Core core = Core.GetCore();
 
-            core.ConnectDataBase();
+            core.ConnectToTournamntsDatabase();
             string[] actual = core.GetParticipantFromDbByMatch(matchId);
 
             string[] expected = new string[2];
@@ -48,7 +48,7 @@ namespace Hackaton_team3.Tests
         {
             Core core = Core.GetCore();
 
-            Assert.IsTrue(core.ConnectDataBase());
+            Assert.IsTrue(core.ConnectToTournamntsDatabase());
         }
 
         [TestCase(@"'TestName','Middle'")]
@@ -56,7 +56,7 @@ namespace Hackaton_team3.Tests
         {
             Core core = Core.GetCore();
 
-            core.ConnectDataBase();
+            core.ConnectToTournamntsDatabase();
             core.InsertParticipantInToDb(value);
 
             

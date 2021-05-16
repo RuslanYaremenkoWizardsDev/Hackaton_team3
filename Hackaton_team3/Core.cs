@@ -9,16 +9,21 @@ namespace Hackaton_team3
     public class Core
     {
         private static Core _core;
-        private string _connectionPath = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Хакатон\Hackaton_team3\TournamtsDb.mdf;Integrated Security=True";
-        private SqlConnection _sqlConnection;
+        private string _connectionPathTournamentsDb = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Хакатон\Hackaton_team3\TournamtsDb.mdf;Integrated Security=True";
+        private string _connectionPathUsersDb = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=F:\C#\Hackaton_team3\Hackaton_team3\UsersDB.mdf;Integrated Security=True";
+        private SqlConnection _sqlConnectionTournamentsDb;
+        private SqlConnection _sqlConnectionUsersDb;
         private LoggingLevelSwitch _loggerSwitch;
         public Logger DbLogger { get; private set; }
         public Tournament CurrentTournament { get; set; }
 
         private Core()
         {
-            ConnectDataBase();
-            CurrentTournament = Tournament.Create("",new DateTime(),new DateTime());
+            InitDbLogger();
+            ConnectToTournamntsDatabase();
+            ConnectToUsersDatabase();
+
+            CurrentTournament = Tournament.Create("", new DateTime(), new DateTime());
         }
 
         public static Core GetCore()
@@ -31,23 +36,46 @@ namespace Hackaton_team3
             return _core;
         }
 
-        public bool ConnectDataBase()
+        public bool ConnectToUsersDatabase()
         {
-            if (_connectionPath != null)
+            if (_connectionPathTournamentsDb != null)
             {
                 bool result = true;
-                InitDbLogger();
-                _sqlConnection = new SqlConnection(_connectionPath);
+                _sqlConnectionTournamentsDb = new SqlConnection(_connectionPathTournamentsDb);
+                _sqlConnectionUsersDb = new SqlConnection(_connectionPathUsersDb);
 
                 try
                 {
-                    _sqlConnection.Open();
-                    DbLogger.Information("Connect to database");
+                    _sqlConnectionUsersDb.Open();
+                    DbLogger.Information("Connect to users database");
                 }
                 catch (Exception e)
                 {
                     result = false;
-                    DbLogger.Error(e.Message);
+                    DbLogger.Error($"Invalid connection to users database { e.Message}");
+                }
+
+                return result;
+            }
+
+            throw new ArgumentNullException("String connection path is null");
+        }
+        public bool ConnectToTournamntsDatabase()
+        {
+            if (_connectionPathTournamentsDb != null)
+            {
+                bool result = true;
+                _sqlConnectionTournamentsDb = new SqlConnection(_connectionPathTournamentsDb);
+
+                try
+                {
+                    _sqlConnectionTournamentsDb.Open();
+                    DbLogger.Information("Connect to tournametns database");
+                }
+                catch (Exception e)
+                {
+                    result = false;
+                    DbLogger.Error($"Invalid connection to tournaments database { e.Message}");
                 }
 
                 return result;
@@ -61,17 +89,20 @@ namespace Hackaton_team3
             bool res = false;
 
             string query = $"select * from [dbo].[{tableName}]";
-            SqlCommand command = new SqlCommand(query, _sqlConnection);
+            SqlCommand command = new SqlCommand(query, _sqlConnectionTournamentsDb);
             SqlDataReader reader = command.ExecuteReader();
 
             if (reader.HasRows)
             {
                 res = true;
             }
+
             reader.Close();
             DbLogger.Information($"Query is done : {query}");
+
             return res;
         }
+
         public string[] GetParticipantFromDbByMatch(string matchId)
         {
 
@@ -84,7 +115,7 @@ namespace Hackaton_team3
                     try
                     {
                         string query = $"select * from [dbo].[Participants] where id = (select [ParticipantOne] from [dbo].[Matches] where [dbo].[Matches].[ID]={matchId}) ";
-                        SqlCommand command = new SqlCommand(query, _sqlConnection);
+                        SqlCommand command = new SqlCommand(query, _sqlConnectionTournamentsDb);
                         SqlDataReader reader = command.ExecuteReader();
 
                         if (reader.Read())
@@ -103,7 +134,7 @@ namespace Hackaton_team3
                     try
                     {
                         string query = $"select * from [dbo].[Participants] where id = (select [ParticipantTwo] from [dbo].[Matches] where [dbo].[Matches].[ID]={matchId})";
-                        SqlCommand command = new SqlCommand(query, _sqlConnection);
+                        SqlCommand command = new SqlCommand(query, _sqlConnectionTournamentsDb);
                         SqlDataReader reader = command.ExecuteReader();
 
                         if (reader.Read())
@@ -133,7 +164,7 @@ namespace Hackaton_team3
                     try
                     {
                         string query = $"select * from [dbo].[Participants] where id = (select [ParticipantOne] from [dbo].[Matches] where [dbo].[Matches].[ID]={matchId}) ";
-                        SqlCommand command = new SqlCommand(query, _sqlConnection);
+                        SqlCommand command = new SqlCommand(query, _sqlConnectionTournamentsDb);
                         SqlDataReader reader = command.ExecuteReader();
 
                         if (reader.Read())
@@ -152,7 +183,7 @@ namespace Hackaton_team3
                     try
                     {
                         string query = $"select * from [dbo].[Participants] where id = (select [ParticipantTwo] from [dbo].[Matches] where [dbo].[Matches].[ID]={matchId})";
-                        SqlCommand command = new SqlCommand(query, _sqlConnection);
+                        SqlCommand command = new SqlCommand(query, _sqlConnectionTournamentsDb);
                         SqlDataReader reader = command.ExecuteReader();
 
                         if (reader.Read())
@@ -180,11 +211,11 @@ namespace Hackaton_team3
             {
                 throw new ArgumentNullException("Table is empty");
             }
-           
+
         }
 
-        
-      
+
+
         public bool InsertParticipantInToDb(string value)
         {
             if (value != null)
@@ -193,7 +224,7 @@ namespace Hackaton_team3
                 try
                 {
                     string query = $"insert dbo.[Participants] values({value})";
-                    SqlCommand command = new SqlCommand(query, _sqlConnection);
+                    SqlCommand command = new SqlCommand(query, _sqlConnectionTournamentsDb);
                     int i = command.ExecuteNonQuery();
                     DbLogger.Information($"{i}Query is done : {query}");
                 }
