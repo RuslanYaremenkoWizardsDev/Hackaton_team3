@@ -11,5 +11,19 @@ namespace Hackaton_team3
         {
             InitializeComponent();
         }
+
+        private void Button_Registration_Click(object sender, RoutedEventArgs e)
+        {
+            RegistrationWindow registrationWindow = new RegistrationWindow();
+            registrationWindow.Show();
+            this.Hide();
+        }
+
+        private void Button_Forgot_Password_Click(object sender, RoutedEventArgs e)
+        {
+            ChangePasswordWindow changePasswordWindow = new ChangePasswordWindow();
+            changePasswordWindow.Show();
+            this.Hide();
+        }
     }
 }

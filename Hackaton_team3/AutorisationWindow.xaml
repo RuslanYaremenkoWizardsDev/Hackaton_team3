@@ -21,6 +21,7 @@
         <Button Content="SUBMIT" Foreground ="White" HorizontalAlignment="Center"  Margin="272,351,31.6,0" VerticalAlignment="Top" Width="190"  Background="#FF2F989A" Height="38" Grid.Column="1"/>
         <Label Content="Login" Foreground ="LightGray" HorizontalAlignment="Center" Margin="72,88,362.6,0" VerticalAlignment="Top" Height="37" Width="59" Grid.ColumnSpan="2"/>
         <Label Content="Password" Foreground ="LightGray" HorizontalAlignment="Center" Margin="72,188,330.6,0" VerticalAlignment="Top" Height="37" Width="91" Grid.ColumnSpan="2"/>
-        <Button Content="REGISTRATION" Foreground ="White" HorizontalAlignment="Center"  Margin="30,351,272.6,0" VerticalAlignment="Top" Width="191"  Background="#FF999999" Height="38" Grid.Column="1"/>
+        <Button Content="REGISTRATION" Click="Button_Registration_Click" Foreground ="White" HorizontalAlignment="Center"  Margin="30,351,272.6,0" VerticalAlignment="Top" Width="191"  Background="#FF999999" Height="38" Grid.Column="1"/>
+        <Button Content="Forgot password" Click="Button_Forgot_Password_Click" Foreground="White" Background="#FF00192A" HorizontalAlignment="Center" Height="40" Margin="0,287,0,0" VerticalAlignment="Top" Width="191" Grid.Column="1"/>
     </Grid>
 </Window>
