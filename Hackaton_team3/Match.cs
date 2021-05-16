@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Hackaton_team3
 {
@@ -71,6 +67,7 @@ namespace Hackaton_team3
         {
 
         }
+
         private Match(Participant participantOne, Participant participantTwo)
         {
             ParticipantOne = participantOne;
@@ -112,6 +109,5 @@ namespace Hackaton_team3
 
             return result;
         }
-
     }
 }

@@ -3,12 +3,12 @@ using NUnit.Framework;
 
 namespace Hackaton_team3.Tests
 {
-    class MatchTests
+    public class MatchTests
     {
-        [TestCase("Name",Division.Advanced)]
+        [TestCase("Name", Division.Advanced)]
         [TestCase("Name", Division.Beginner)]
         [TestCase("Name", Division.Middle)]
-        public void Create_WhenValidTestPassed_ShouldReturnValidMatch(string name,Division division)
+        public void Create_WhenValidTestPassed_ShouldReturnValidMatch(string name, Division division)
         {
             Participant participant = Participant.Create(name, division);
             Match actual = Match.Create(participant, participant);
@@ -18,7 +18,7 @@ namespace Hackaton_team3.Tests
             Assert.NotNull(actual.ParticipantTwo);
         }
 
-        [TestCase("name1",Division.Advanced,"name1",Division.Advanced,true)]
+        [TestCase("name1", Division.Advanced, "name1", Division.Advanced, true)]
         [TestCase("name1", Division.Beginner, "name1", Division.Beginner, true)]
         [TestCase("name1", Division.Middle, "name1", Division.Middle, true)]
         [TestCase("name1", Division.Advanced, "name1", Division.Beginner, false)]
@@ -37,9 +37,9 @@ namespace Hackaton_team3.Tests
             Assert.AreEqual(expected, actual);
         }
 
-        [TestCase("10:10","10:10")]
-        [TestCase("111","111")]
-        public void SetResult_WhenValidTestPassed_ShouldSetCurrentResult(string actualString,string expected)
+        [TestCase("10:10", "10:10")]
+        [TestCase("111", "111")]
+        public void SetResult_WhenValidTestPassed_ShouldSetCurrentResult(string actualString, string expected)
         {
             Participant actualParticipant = Participant.Create(string.Empty, Division.Advanced);
             Match actualMatch = Match.Create(actualParticipant, actualParticipant);

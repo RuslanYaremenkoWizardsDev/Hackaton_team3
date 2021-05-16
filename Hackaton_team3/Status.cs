@@ -1,5 +1,4 @@
-﻿
-namespace Hackaton_team3
+﻿namespace Hackaton_team3
 {
     public enum Status
     {

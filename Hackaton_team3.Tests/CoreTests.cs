@@ -1,9 +1,8 @@
-using System;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 
-namespace ProgramCore.Test
+namespace Hackaton_team3.Tests
 {
-    public class Tests
+    public class CoreTests
     {
         //[TestCase("Data Source=DESKTOP-2SAV0E8;Initial Catalog=Hackaton_team3;Integrated Security=True")]
         //[TestCase(null)]

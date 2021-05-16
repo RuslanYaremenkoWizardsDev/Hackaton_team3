@@ -1,19 +1,19 @@
-using System;
+﻿using System;
 using System.Data.SqlClient;
 using Serilog;
 using Serilog.Core;
 using Serilog.Events;
 
-namespace ProgramCore
+namespace Hackaton_team3
 {
     public class Core
     {
         private static Core _core;
-        private string _connectionPath = "Data Source=DESKTOP-2SAV0E8;Initial Catalog=Hackaton_team3;Integrated Security=True";
+        private string _connectionPath = "Data Source=DESKTOP-2SAV0E81;Initial Catalog=Hackaton_team3;Integrated Security=True";
         private SqlConnection _sqlConnection;
         private LoggingLevelSwitch _loggerSwitch;
         public Logger DbLogger { get; private set; }
-        
+
         public static Core GetCore()
         {
             if (_core == null)
