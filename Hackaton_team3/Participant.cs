@@ -27,6 +27,7 @@ namespace Hackaton_team3
         }
         public Division Division { get; set; }
 
+        public int Id { get; set; }
         private Participant(string line)
         {
             string[] parsed = line.Split(",".ToCharArray());

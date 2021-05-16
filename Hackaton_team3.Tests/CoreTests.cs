@@ -44,6 +44,7 @@ namespace Hackaton_team3.Tests
         }
 
 
+
         [Test]
         public void ConnectDataBase_WhenValidTestPassed_ConnectionwhithoutException()
         {
@@ -65,9 +66,7 @@ namespace Hackaton_team3.Tests
             Core core = Core.GetCore();
 
             core.ConnectDataBase();
-            core.InsertParticipantInToDb(value);
-
-            
+            core.InsertParticipantInToDb(value);   
         }
 
         [TestCase(@"'1','','Tournament','','2020.06.01','2020.05.01','Middle','Bo1','NotStarted'")]
@@ -76,6 +75,14 @@ namespace Hackaton_team3.Tests
             Core core = Core.GetCore();
             core.ConnectDataBase();
             core.InsertTournamentDb(value);
+        }
+
+        [TestCase(@"")]
+        public void InsertMatchToDB_WhenValidTestPassed_ShouldAddNewValue(string value)
+        {
+            Core core = Core.GetCore();
+            core.ConnectDataBase();
+            core.InsertMatchDb(value);
         }
 
         [TestCase()]
@@ -89,6 +96,17 @@ namespace Hackaton_team3.Tests
             Assert.IsTrue(serializedTournaments.Count>0);
         }
 
+
+        [TestCase("2")]
+        public void SelectMatchFromToDb_WhemValidTestPassed_ShouldReturnListOfMatch(string tournamentId)
+        {
+            Core core = Core.GetCore();
+            core.ConnectDataBase();
+
+            List<string> serializedMatches = core.GetSerializedMatchesByTournamentFromDB(tournamentId);
+
+            Assert.IsTrue(serializedMatches.Count > 0);
+        }
         //[TestCase(null)]
         //public void GetCore_WhenInvalidTestPassed_ShouldReturnAgrumentNullException(string actualString)
         //{
