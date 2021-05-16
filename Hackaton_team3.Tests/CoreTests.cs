@@ -20,6 +20,28 @@ namespace Hackaton_team3.Tests
 
         //    Assert.NotNull(actual);
         //}
+        [TestCase(@"2")]
+        public void SelectParticipantFromToDb_WhemValidTestPassed_ShouldReturnArrayWithTwoParticipants(string matchId)
+        {
+            Core core = Core.GetCore();
+
+            core.ConnectDataBase();
+            string[] actual = core.GetParticipantFromDb(matchId);
+
+            string[] expected = new string[2];
+            expected[0] = "TestName,TestDivision";
+            expected[1] = "TestName,TestDivision";
+            bool actualBool = true;
+            for (int i = 0; i < expected.Length; i++)
+            {
+                if (expected[i] != actual[i])
+                {
+                    actualBool = false;
+                }
+            }
+            Assert.IsTrue(actualBool);
+        }
+
 
         [Test]
         public void ConnectDataBase_WhenValidTestPassed_ConnectionwhithoutException()
