@@ -11,8 +11,9 @@ namespace Hackaton_team3
         private string _description;
         private string _location;
 
-        public ParticipantsAmount Amount { get; set; } 
+        public ParticipantsAmount MaxAmount { get; set; } 
         public TournamentMode Mode { get; set; }
+        public int Amount { get; set; }
         public string Name
         {
             get
@@ -83,7 +84,7 @@ namespace Hackaton_team3
 
         }
 
-        public Tournament(string name, DateTime start, DateTime endRegistration)
+        public Tournament(string name,int amount, DateTime start, DateTime endRegistration)
         {
             Name = name;
             Start = start;
@@ -96,7 +97,14 @@ namespace Hackaton_team3
             Location = string.Empty;
             Scenario = Scenario.Bo1;
             Status = Status.NotStarted;
+            Amount = amount;
+            Match[] newMatch = new Match[Amount / 2];
+            for (int i = 0; i < newMatch.Length; i++)
+            {
+                newMatch[i] = new Match();
+            }
 
+            SetLocationMatch(newMatch, 0, 0);
         }
 
         private Tournament(string line)
@@ -145,16 +153,39 @@ namespace Hackaton_team3
             }
         }
 
-        public static Tournament Create(string name, DateTime start, DateTime endRegistration)
+        public static Tournament Create(string name,int amount, DateTime start, DateTime endRegistration)
         {
             if (name != null)
             {
-                return new Tournament(name, start, endRegistration);
+                return new Tournament(name,amount, start, endRegistration);
             }
 
             throw new ArgumentNullException("Name is null");
         }
 
+        public void SetLocationMatch(Match[] allMatch, int x, int y)
+        {
+            int tempY = y;
+            foreach (Match match in allMatch)
+            {
+                tempY += 70 + 50;
+                match.Location = new System.Drawing.Point(x, tempY);
+            }
+
+            Matches.AddRange(allMatch);
+            int index = allMatch.Length / 2;
+            Match[] newMatch = new Match[index];
+            for (int i = 0; i < index; i++)
+            {
+                newMatch[i] = new Match();
+            }
+
+            if (allMatch.Length > 1)
+            {
+                SetLocationMatch(newMatch, x + 100 + 50, y + 70);
+
+            }
+        }
         public override bool Equals(object obj)
         {
             bool result = false;
