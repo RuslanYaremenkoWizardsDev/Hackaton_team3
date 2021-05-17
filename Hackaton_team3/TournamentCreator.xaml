@@ -28,7 +28,7 @@
         <ComboBox HorizontalAlignment="Left" Height="28" Margin="518,388,0,0" VerticalAlignment="Top" Width="570"/>
         <ComboBox HorizontalAlignment="Left" Height="28" Margin="518,426,0,0" VerticalAlignment="Top" Width="570"/>
         <ComboBox HorizontalAlignment="Left" Height="28" Margin="518,466,0,0" VerticalAlignment="Top" Width="570"/>
-        <Button Content="CREATE AND CONFIRM" Background ="#4377B3" Height="53" Margin="763,558,179,0" VerticalAlignment="Top" FontSize="20"/>
+        <Button Content="CREATE AND CONFIRM" Click="Button_Main_Window_Click" Background ="#4377B3" Height="53" Margin="763,558,179,0" VerticalAlignment="Top" FontSize="20"/>
         <Button Content="CANCEL" Height="53" Margin="178,558,764,0" VerticalAlignment="Top" FontSize="20"/>
 
     </Grid>

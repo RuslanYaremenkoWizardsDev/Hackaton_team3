@@ -87,5 +87,19 @@ namespace Hackaton_team3
             autorisationWindow.Show();
             this.Hide();
         }
+
+        private void Button_Tournament_Window_Click(object sender, RoutedEventArgs e)
+        {
+            TournamentCreator tournamentCreator = new TournamentCreator();
+            tournamentCreator.Show();
+            this.Hide();
+        }
+
+        private void Button_Participant_Windows_Click(object sender, RoutedEventArgs e)
+        {
+            ParticipantWindow participantWindow = new ParticipantWindow();
+            participantWindow.Show();
+            this.Hide();
+        }
     }
 }
