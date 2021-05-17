@@ -76,6 +76,8 @@ namespace Hackaton_team3
 
         public Status Status { get; set; }
 
+        public int Id { get; set; }
+
         public Tournament()
         {
 

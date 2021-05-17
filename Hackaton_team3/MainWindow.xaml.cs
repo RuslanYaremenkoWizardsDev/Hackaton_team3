@@ -20,9 +20,72 @@ namespace Hackaton_team3
     /// </summary>
     public partial class MainWindow : Window
     {
+        private Core _core;
+        private Point _point;
+        private List<Point> _points;
+
         public MainWindow()
         {
+            _core = Core.GetCore();
+
             InitializeComponent();
+
+            MatchListForDrawing.ItemsSource = _core.CurrentTournament.Matches;
         }
+
+        public int GetAmountOfParticipants(ParticipantsAmount participantsAmount)
+        {
+        
+            return (int)participantsAmount;
+        }
+
+        public List<Point> GetListOfBoxes (int amountParticipants, List<Match> matches, Point p, int margin)
+        {
+            int gridBoxesY = amountParticipants / 2;
+            _points = new List<Point>(gridBoxesY);
+            int gridBoxesX = 0;
+            while (gridBoxesY!=1)
+            {
+                gridBoxesY /= 2;
+                gridBoxesX++;
+            }
+            gridBoxesY = amountParticipants / 2;
+            
+            _point.X = p.X;
+            _point.Y = p.Y;
+
+            int x = margin;
+
+            Point startPoint = new Point(_point.X, _point.Y);
+            
+            _points.Add(_point);
+            
+
+            int changeY = 2;
+
+            for(int i=0;i<gridBoxesX;i++)
+            {
+                for(int j=0;j<gridBoxesY;j++)
+                {
+                    gridBoxesY /= 2;
+                    _point.Y = changeY * _point.X;
+                    _points.Add(_point);
+                    changeY++;
+                }
+
+                startPoint.X = startPoint.X + 3 * x;
+                startPoint.Y = +x;
+
+            }
+
+            return _points;
+        }
+
+        private void Button_Autorisation_Window_Click(object sender, RoutedEventArgs e)
+        {
+            AutorisationWindow autorisationWindow = new AutorisationWindow();
+            autorisationWindow.Show();
+            this.Hide();
+        }
     }
 }
