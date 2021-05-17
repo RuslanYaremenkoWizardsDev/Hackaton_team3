@@ -16,7 +16,7 @@
         <Label Foreground="White" HorizontalAlignment="Left" Margin="118,397,0,0" VerticalAlignment="Top" Width="149" Height="29"/>
         <Label Content="Number of patricipants" FontSize="20" Foreground="White" HorizontalAlignment="Left" Margin="118,385,0,0" VerticalAlignment="Top" Width="207" Height="36"/>
         <Label Content="Name" Foreground="White" HorizontalAlignment="Left" Margin="576,258,0,0" VerticalAlignment="Top" Width="483" Height="34" FontSize="14"/>
-        <Button Content="CREATE AND CONTINUE" Foreground="White" Background="#4377B3" HorizontalAlignment="Left" Margin="803,535,0,0" VerticalAlignment="Top" Height="63" Width="256" FontSize="20"/>
+        <Button Content="CREATE AND CONTINUE" Click="Button_Main_Window_Click" Foreground="White" Background="#4377B3" HorizontalAlignment="Left" Margin="803,535,0,0" VerticalAlignment="Top" Height="63" Width="256" FontSize="20"/>
         <Button Content="CANCEL" Background="#999999" Foreground="White" HorizontalAlignment="Left" Margin="118,535,0,0" VerticalAlignment="Top" Height="63" Width="256" FontSize="20"/>
     </Grid>
 </Window>
