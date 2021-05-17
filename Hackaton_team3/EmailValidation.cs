@@ -13,7 +13,6 @@ namespace Hackaton_team3
             if (email != null)
             {
                 bool result = false;
-
                 if (_regex.IsMatch(email))
                 {
                     result = true;

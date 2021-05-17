@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Hackaton_team3
 {
     public static class AuthorizationService
     {
-        
-
         public static bool DoesLoginExist(string email)
         {
             Core _core = Core.GetCore();
@@ -18,16 +14,15 @@ namespace Hackaton_team3
                 {
                     result = true;
                 }
+
                 return result;
             }
 
             throw new ArgumentNullException("Email is null.");
         }
 
-
         public static bool IsPasswordCorrect(string email, string password)
         {
-
             Core _core = Core.GetCore();
             if (email != null && password != null)
             {
