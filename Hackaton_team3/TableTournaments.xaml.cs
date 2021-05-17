@@ -13,20 +13,13 @@ using System.Windows.Shapes;
 namespace Hackaton_team3
 {
     /// <summary>
-    /// Interaction logic for RegistrationWindow.xaml
+    /// Interaction logic for TableTournaments.xaml
     /// </summary>
-    public partial class RegistrationWindow : Window
+    public partial class TableTournaments : Window
     {
-        public RegistrationWindow()
+        public TableTournaments()
         {
             InitializeComponent();
-        }
-
-        private void Button_Main_Window_Click(object sender, RoutedEventArgs e)
-        {
-            MainWindow mainWindow = new MainWindow();
-            mainWindow.Show();
-            this.Hide();
         }
     }
 }

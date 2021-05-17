@@ -18,7 +18,7 @@
         <TextBox Height="33" Foreground ="
                  Gray" Margin="72,125,71.6,0" TextWrapping="Wrap" Text=" enter login/email" VerticalAlignment="Top" Background="#FF01131F" Grid.Column="1" />
         <TextBox HorizontalAlignment="Left" Foreground ="Gray" Height="33" Margin="72,225,0,0" TextWrapping="Wrap" Text=" enter password" VerticalAlignment="Top" Width="350"  Background="#FF01131F" Grid.Column="1"/>
-        <Button Content="SUBMIT" Foreground ="White" HorizontalAlignment="Center"  Margin="272,351,31.6,0" VerticalAlignment="Top" Width="190"  Background="#FF2F989A" Height="38" Grid.Column="1"/>
+        <Button Content="SUBMIT" Click="Button_Main_Window_Click" Foreground ="White" HorizontalAlignment="Center"  Margin="272,351,31.6,0" VerticalAlignment="Top" Width="190"  Background="#FF2F989A" Height="38" Grid.Column="1"/>
         <Label Content="Login" Foreground ="LightGray" HorizontalAlignment="Center" Margin="72,88,362.6,0" VerticalAlignment="Top" Height="37" Width="59" Grid.ColumnSpan="2"/>
         <Label Content="Password" Foreground ="LightGray" HorizontalAlignment="Center" Margin="72,188,330.6,0" VerticalAlignment="Top" Height="37" Width="91" Grid.ColumnSpan="2"/>
         <Button Content="REGISTRATION" Click="Button_Registration_Click" Foreground ="White" HorizontalAlignment="Center"  Margin="30,351,272.6,0" VerticalAlignment="Top" Width="191"  Background="#FF999999" Height="38" Grid.Column="1"/>

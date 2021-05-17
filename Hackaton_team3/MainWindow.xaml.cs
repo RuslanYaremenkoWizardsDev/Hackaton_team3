@@ -36,14 +36,14 @@ namespace Hackaton_team3
             FillListBoxTournament();
         }
 
-        public void FillListBoxTournament()
-        {
-            foreach (var tournament in _core.listOfTournaments)
-            {
-                ListBoxTournament.Items.Add(tournament.Name);
-            }
-
-           
+        public void FillListBoxTournament()
+        {
+            foreach (var tournament in _core.listOfTournaments)
+            {
+                ListBoxTournament.Items.Add(tournament.Name);
+            }
+
+           
         }
 
         public int GetAmountOfParticipants(ParticipantsAmount participantsAmount)
@@ -93,5 +93,12 @@ namespace Hackaton_team3
 
             return _points;
         }
+
+        private void Button_Autorisation_Window_Click(object sender, RoutedEventArgs e)
+        {
+            AutorisationWindow autorisationWindow = new AutorisationWindow();
+            autorisationWindow.Show();
+            this.Hide();
+        }
     }
 }
