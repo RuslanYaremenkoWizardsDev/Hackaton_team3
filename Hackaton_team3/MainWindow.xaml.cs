@@ -31,6 +31,19 @@ namespace Hackaton_team3
             InitializeComponent();
 
             MatchListForDrawing.ItemsSource = _core.CurrentTournament.Matches;
+            _core.Innitialize();
+
+            FillListBoxTournament();
+        }
+
+        public void FillListBoxTournament()
+        {
+            foreach (var tournament in _core.listOfTournaments)
+            {
+                ListBoxTournament.Items.Add(tournament.Name);
+            }
+
+           
         }
 
         public int GetAmountOfParticipants(ParticipantsAmount participantsAmount)

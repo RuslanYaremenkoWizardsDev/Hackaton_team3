@@ -66,7 +66,7 @@ namespace Hackaton_team3
         {
             InitDbLogger();
             ConnectToTournamntsDatabase();
-            ConnectToUsersDatabase();
+           // ConnectToUsersDatabase();
 
             CurrentTournament = Tournament.Create("", new DateTime(), new DateTime());
         }
@@ -129,22 +129,18 @@ namespace Hackaton_team3
             throw new ArgumentNullException("String connection path is null");
         }
 
-        public bool TableHasValues(string tableName)
-        {
-            bool res = false;
-
+        public bool TableHasValues(string tableName)
+        {
+            bool res = false;
             string query = $"select * from [dbo].[{tableName}]";
             SqlCommand command = new SqlCommand(query, _sqlConnectionTournamentsDb);
             SqlDataReader reader = command.ExecuteReader();
-
-            if (reader.HasRows)
-            {
-                res = true;
+            if (reader.HasRows)
+            {
+                res = true;
             }
-
-            reader.Close();
-            DbLogger.Information($"Query is done : {query}");
-
+            reader.Close();
+            DbLogger.Information($"Query is done : {query}");
             return res;
         }
 
