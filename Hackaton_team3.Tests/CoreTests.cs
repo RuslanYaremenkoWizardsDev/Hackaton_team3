@@ -68,6 +68,30 @@ namespace Hackaton_team3.Tests
             Assert.IsTrue(serializedTournaments.Count > 0);
         }
 
+        [TestCase("egorusdnepr@gmail.com",true)]
+        [TestCase("egorusdnepr2@gmail.com",false)]
+        public void LoginEsistInDatabase_WhemValidTestPassed_ShouldReturnTrue(string actualEmail, bool expected)
+        {
+            Core core = Core.GetCore();
+            core.ConnectToTournamntsDatabase();
+
+            bool actual = core.EmailExistsInDB(actualEmail);
+            Assert.AreEqual(expected, actual);
+        }
+
+
+        [TestCase("egorusdnepr@gmail.com","password", true)]
+        [TestCase("egorusdnepr2@gmail.com", "password", false)]
+        [TestCase("egorusdnepr@gmail.com","password2", false)]
+        public void PairLoginPassword_WhemValidTestPassed_ShouldReturnTrue(string actualEmail,string password, bool expected)
+        {
+            Core core = Core.GetCore();
+            core.ConnectToTournamntsDatabase();
+
+            bool actual = core.PairPasswordEmail(actualEmail, password);
+            Assert.AreEqual(expected, actual);
+        }
+
         [TestCase("2")]
         public void SelectMatchFromToDb_WhemValidTestPassed_ShouldReturnListOfMatch(string tournamentId)
         {

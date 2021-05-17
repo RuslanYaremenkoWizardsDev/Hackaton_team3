@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Security.Cryptography;
 using System.Text;
 using Serilog;
 using Serilog.Core;
@@ -66,7 +67,7 @@ namespace Hackaton_team3
         {
             InitDbLogger();
             ConnectToTournamntsDatabase();
-            ConnectToUsersDatabase();
+           // ConnectToUsersDatabase();
 
             CurrentTournament = Tournament.Create("", new DateTime(), new DateTime());
         }
@@ -258,8 +259,61 @@ namespace Hackaton_team3
                 throw new ArgumentNullException("Table is empty");
             }
 
+        }
+
+
+        public bool EmailExistsInDB(string email)
+        {
+            bool result = false;
+            if (TableHasValues("Users"))
+            {
+                try
+                {
+                    string query = $"select * from [dbo].[Users] where Login='{email}'";
+                    SqlCommand command = new SqlCommand(query, _sqlConnectionTournamentsDb);
+                    SqlDataReader reader = command.ExecuteReader();
+                    if (reader.HasRows)
+                    {
+                        result = true;
+                    }
+                    reader.Close();
+                    DbLogger.Information($"Query is done : {query}");
+                }
+                catch (Exception e)
+                {
+                    DbLogger.Error(e.ToString());
+                }
+            }
+            return result;
         }
-       
+        public bool PairPasswordEmail(string email, string password)
+        {
+            bool result = false;
+            if (TableHasValues("Users"))
+            {
+                try
+                {
+                    var md5 = MD5.Create();
+                    var hash = md5.ComputeHash(Encoding.UTF8.GetBytes(password));
+                    string hashedPassword = Convert.ToBase64String(hash);
+
+                    string query = $"select * from [dbo].[Users] where Login='{email}' and password='{hashedPassword}'";
+                    SqlCommand command = new SqlCommand(query, _sqlConnectionTournamentsDb);
+                    SqlDataReader reader = command.ExecuteReader();
+                    if (reader.HasRows)
+                    {
+                        result = true;
+                    }
+                    reader.Close();
+                    DbLogger.Information($"Query is done : {query}");
+                }
+                catch (Exception e)
+                {
+                    DbLogger.Error(e.ToString());
+                }
+            }
+            return result;
+        }
         public List<string> GetSerializedtournamentsFromDB()
         {
             List<string> result = new List<string>();

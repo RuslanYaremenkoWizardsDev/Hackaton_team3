@@ -18,5 +18,13 @@ namespace Hackaton_team3.Tests
         {
             Assert.Throws<ArgumentNullException>(() => AuthorizationService.IsPasswordCorrect(actualEmail, actualPassword));
         }
+
+        [TestCase("egorusdnepr@gmail.com",true)]
+        [TestCase("egorusdnepr2@gmail.com", false)]
+        public void DoesLoginExist_ShoulReturnTrueOrFalse(string login, bool expected)
+        {
+            bool actual = AuthorizationService.DoesLoginExist(login);
+            Assert.AreEqual(expected,actual);
+        }
     }
 }
