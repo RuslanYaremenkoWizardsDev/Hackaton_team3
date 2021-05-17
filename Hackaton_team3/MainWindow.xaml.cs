@@ -30,7 +30,7 @@ namespace Hackaton_team3
 
             InitializeComponent();
 
-            MatchListForDrawing.ItemsSource = _core.CurrentTournament.Matches;
+            //MatchListForDrawing.ItemsSource = _core.CurrentTournament.Matches;
         }
 
         public int GetAmountOfParticipants(ParticipantsAmount participantsAmount)
@@ -86,6 +86,6 @@ namespace Hackaton_team3
             AutorisationWindow autorisationWindow = new AutorisationWindow();
             autorisationWindow.Show();
             this.Hide();
-        }
+        }
     }
 }
