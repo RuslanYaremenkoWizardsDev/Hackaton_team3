@@ -11,7 +11,7 @@ namespace Hackaton_team3.Tests
         [TestCase("2", 2021, 01, 02, 2021, 01, 01)]
         public void Create_WhenValidTestPassed_ShouldReturnTournamentObject(string name, int yearStart, int monthStart, int dayStart, int yearEnd, int monthEnd, int dayEnd)
         {
-            Tournament test = Tournament.Create(name, new DateTime(yearStart, monthStart, dayStart), new DateTime(yearEnd, monthEnd, dayEnd));
+            Tournament test = Tournament.Create(name,4, new DateTime(yearStart, monthStart, dayStart), new DateTime(yearEnd, monthEnd, dayEnd));
 
             Assert.That(test, Is.TypeOf<Tournament>());
             Assert.AreEqual(name, test.Name);
@@ -38,15 +38,15 @@ namespace Hackaton_team3.Tests
         [TestCase(null)]
         public void Create_WhenInvalidTestPassed_ShouldReturnArgumentNullExeption(string actualName)
         {
-            Assert.Throws<ArgumentNullException>(() => Tournament.Create(actualName, new DateTime(), new DateTime()));
+            Assert.Throws<ArgumentNullException>(() => Tournament.Create(actualName,4, new DateTime(), new DateTime()));
         }
 
         [TestCase("1", "1", true)]
         [TestCase("1", "2", false)]
         public void Equals_WhenValidTestPassed_ShouldRerturnTrueOrFalse(string actualName, string expectedName, bool expected)
         {
-            Tournament actualParticipant = Tournament.Create(actualName, new DateTime(), new DateTime());
-            Tournament expectedParticipant = Tournament.Create(expectedName, new DateTime(), new DateTime());
+            Tournament actualParticipant = Tournament.Create(actualName,4, new DateTime(), new DateTime());
+            Tournament expectedParticipant = Tournament.Create(expectedName,4, new DateTime(), new DateTime());
 
             bool actual = actualParticipant.Equals(expectedParticipant);
 
@@ -86,7 +86,7 @@ namespace Hackaton_team3.Tests
         [TestCase(null)]
         public void SetName_WhenInvalidTestPassed_ShouldReturnArgumentNullExeption(string actualName)
         {
-            Tournament actualTournament = Tournament.Create("", DateTime.Now, DateTime.Now);
+            Tournament actualTournament = Tournament.Create("",4, DateTime.Now, DateTime.Now);
 
             Assert.Throws<ArgumentNullException>(() => actualTournament.Name = actualName);
         }
@@ -94,7 +94,7 @@ namespace Hackaton_team3.Tests
         [Test]
         public void GetLocation_WhenValidTestPassed_ShouldReturnCurrentLocation()
         {
-            Tournament actualTournament = Tournament.Create("", DateTime.Now, DateTime.Now);
+            Tournament actualTournament = Tournament.Create("",4, DateTime.Now, DateTime.Now);
 
             Assert.NotNull(actualTournament.Location);
         }
@@ -102,7 +102,7 @@ namespace Hackaton_team3.Tests
         [TestCase(null)]
         public void SetLocation_WhenInvalidTestPassed_ShouldReturnArgumentNullExeption(string actualLocation)
         {
-            Tournament actualTournament = Tournament.Create("", DateTime.Now, DateTime.Now);
+            Tournament actualTournament = Tournament.Create("",4, DateTime.Now, DateTime.Now);
 
             Assert.Throws<ArgumentNullException>(() => actualTournament.Location = actualLocation);
         }
@@ -111,7 +111,7 @@ namespace Hackaton_team3.Tests
         [Test]
         public void GetPoints_WhenValidTestPassed_ShouldReturnCurrentLocation()
         {
-            Tournament actualTournament = Tournament.Create("", DateTime.Now, DateTime.Now);
+            Tournament actualTournament = Tournament.Create("",4, DateTime.Now, DateTime.Now);
 
             Assert.NotNull(actualTournament.Points);
         }
@@ -119,7 +119,7 @@ namespace Hackaton_team3.Tests
         [TestCase(null)]
         public void SetDescription_WhenInvalidTestPassed_ShouldReturnArgumentNullExeption(string actualDescription)
         {
-            Tournament actualTournament = Tournament.Create("", DateTime.Now, DateTime.Now);
+            Tournament actualTournament = Tournament.Create("",4, DateTime.Now, DateTime.Now);
 
             Assert.Throws<ArgumentNullException>(() => actualTournament.Description = actualDescription);
         }
@@ -129,7 +129,7 @@ namespace Hackaton_team3.Tests
         [TestCase("!^@&182204497(*@&")]
         public void SetDescription_WhenValidTestPassed_ShouldReturnDescription(string expected)
         {
-            Tournament actualTournament = Tournament.Create("", DateTime.Now, DateTime.Now);
+            Tournament actualTournament = Tournament.Create("",4, DateTime.Now, DateTime.Now);
             actualTournament.Description = expected;
 
             string actual = actualTournament.Description;
