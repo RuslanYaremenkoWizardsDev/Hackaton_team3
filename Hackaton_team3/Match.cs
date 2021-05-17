@@ -6,8 +6,8 @@ namespace Hackaton_team3
 {
     public class Match
     {
-        public string participantId1 { get; set; }
-        public string participantId2 { get; set; }
+        public string participantIdOne { get; set; }
+        public string participantIdTwo { get; set; }
         private Participant _participantOne;
         private Participant _participantTwo;
         private string _result = "";
@@ -70,9 +70,12 @@ namespace Hackaton_team3
         public int Id { get; set; }
         public Layers Layer { get; set; }
         public Point Location { get; set; }
+
         public Match()
         {
-
+            ParticipantOne = Participant.Create("name1", Division.Advanced);
+            ParticipantTwo = Participant.Create("name2", Division.Advanced);
+            Result = string.Empty;
         }
 
         private Match(Participant participantOne, Participant participantTwo)
@@ -87,21 +90,23 @@ namespace Hackaton_team3
         {
             string[] parsed = line.Split(",".ToCharArray());
             Id = int.Parse(parsed[0]);
-            //participantId1 = parsed[1];
-            //participantId2 = parsed[2];
+            participantIdOne = parsed[1];
+            participantIdTwo = parsed[2];
             Result = parsed[3];
             if (!Enum.TryParse(parsed[4], out Status status))
             {
                 status = Status.NotStarted;
             }
+
             Status = status;
-            //Id = Int32.Parse(parsed[5]);
+            Id = Int32.Parse(parsed[5]);
+
             if (!Int32.TryParse(parsed[5], out int id))
             {
                 throw new FormatException();
             }
+
             Id = id;
-           
         }
 
         public static Match Create(string line)

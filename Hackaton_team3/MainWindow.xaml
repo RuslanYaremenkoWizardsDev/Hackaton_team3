@@ -6,6 +6,14 @@
         xmlns:local="clr-namespace:Hackaton_team3"
         mc:Ignorable="d"
         Title="MainWindow" Height="700" Width="1200">
+
+    <Window.Resources>
+        <Style x:Key="CanvasLocationStile" TargetType="ListBoxItem">
+            <Setter Property="Canvas.Left" Value="{Binding Location.X}"/>
+            <Setter Property="Canvas.Top" Value="{Binding Location.Y}"/>
+        </Style>
+    </Window.Resources>
+
     <Grid Margin="0,0,-0.4,0.4">
         <Grid.RowDefinitions>
             <RowDefinition Height="93*"/>
@@ -34,5 +42,33 @@
         <DataGrid Grid.Column="1" Height="225" Margin="77,19.6,76.6,0" Grid.Row="2" VerticalAlignment="Top"/>
         <Button Content="Switch to dark mode" Background=" White" HorizontalAlignment="Center" Height="75" VerticalAlignment="Center" Width="200" FontSize="20"  IsCancel="True"/>
 
+
+        <ListBox Name="MatchListForDrawing" 
+                 Margin="10,14,14,25" 
+                 ItemContainerStyle="{StaticResource CanvasLocationStile}" Background="#FF3C3C3C" Grid.RowSpan="3" Grid.Column="1">
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Canvas/>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Name ="StackPanelMatch"
+                                Background="{DynamicResource {x:Static SystemColors.MenuBarBrushKey}}" 
+                                Margin="10,10"
+                                RenderTransformOrigin="-0.31,0.497" 
+                                Height="70" Width="100">
+                        <Label Content="{Binding ParticipantOne.Name}"
+                               HorizontalContentAlignment="Left"
+                               Height="25" Width="100"/>
+                        <TextBlock Text="{Binding Result}"
+                                   HorizontalAlignment="Center"/>
+                        <Label Content="{Binding ParticipantTwo.Name}"
+                               HorizontalContentAlignment="Left"
+                               Height="25" Width="100"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </Grid>
 </Window>
