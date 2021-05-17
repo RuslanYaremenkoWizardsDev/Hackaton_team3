@@ -21,7 +21,7 @@
         <Label Content="Password" Foreground ="LightGray" HorizontalAlignment="Center" Margin="77,170,133.54,0" VerticalAlignment="Top" Height="37" Width="91"/>
         <TextBox HorizontalAlignment="Left" Foreground ="Gray" Height="33" Margin="77,207,0,0" TextWrapping="Wrap" Text=" enter password" VerticalAlignment="Top" Width="350"  Background="#FF01131F"/>
         <TextBox HorizontalAlignment="Left" Foreground ="Gray" Height="33" Margin="77,293,0,0" TextWrapping="Wrap" Text=" enter password" VerticalAlignment="Top" Width="350"  Background="#FF01131F"/>
-        <Button Content="REGISTER" Click="Button_Main_Window_Click" Foreground ="White" HorizontalAlignment="Left"  Margin="134,380,0,0" VerticalAlignment="Top" Width="200"  Background="#FF999999"/>
+        <Button Content="REGISTER" Foreground ="White" HorizontalAlignment="Left"  Margin="134,380,0,0" VerticalAlignment="Top" Width="200"  Background="#FF999999"/>
         <Label Content="Login" Foreground ="LightGray" HorizontalAlignment="Left" Margin="79,83,0,0" VerticalAlignment="Top" Height="37"/>
         <Label Content="Password" Foreground ="LightGray" HorizontalAlignment="Left" Margin="79,170,0,0" VerticalAlignment="Top" Height="37" Width="91"/>
         <Label Content="Confirm Password" Foreground ="LightGray" HorizontalAlignment="Left" Margin="79,256,0,0" VerticalAlignment="Top" Height="37" Width="167"/>
