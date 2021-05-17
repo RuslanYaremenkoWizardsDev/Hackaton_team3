@@ -6,16 +6,18 @@ namespace Hackaton_team3
 {
     public static class AuthorizationService
     {
+        
+
         public static bool DoesLoginExist(string email)
         {
+            Core _core = Core.GetCore();
             if (email != null)
             {
                 bool result = false;
-                if (true) /*тут кто-то должен сделать запрос в БД*/
+                if (_core.EmailExistsInDB(email)) 
                 {
                     result = true;
                 }
-
                 return result;
             }
 
@@ -25,12 +27,14 @@ namespace Hackaton_team3
 
         public static bool IsPasswordCorrect(string email, string password)
         {
+
+            Core _core = Core.GetCore();
             if (email != null && password != null)
             {
                 bool result = false;
                 if (AuthorizationService.DoesLoginExist(email))
                 {
-                    if (true) //тут кто-то должен проверить поступающий пароль с паролем из БД
+                    if (_core.PairPasswordEmail(email,password)) //тут кто-то должен проверить поступающий пароль с паролем из БД
                     {
                         result = true;
                     }

@@ -1,0 +1,35 @@
+﻿<Window x:Class="Hackaton_team3.TournamentCreator"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Hackaton_team3"
+        mc:Ignorable="d"
+        Title="TournamentCreator" Height="700" Width="1200">
+    <Grid Background="#00192A">
+        <Label Content="CREATE TOURNAMENT" Foreground="White" HorizontalAlignment="Center" Height="44" Margin="0,33,0,0" VerticalAlignment="Top" Width="273" FontSize="24" FontWeight="Bold"/>
+        <Label Content="Name of tournament" Foreground="White" HorizontalAlignment="Left" Height="40" Margin="178,108,0,0" VerticalAlignment="Top" Width="229" FontSize="18" FontFamily="Roboto"/>
+        <Label Content="Tournament description" Foreground="White" HorizontalAlignment="Left" Height="40" Margin="178,148,0,0" VerticalAlignment="Top" Width="229" FontSize="18" FontFamily="Roboto"/>
+        <Label Content="Mode" Foreground="White" HorizontalAlignment="Left" Height="40" Margin="178,188,0,0" VerticalAlignment="Top" Width="229" FontSize="18" FontFamily="Roboto"/>
+        <Label Content="Place" Foreground="White" HorizontalAlignment="Left" Height="40" Margin="178,228,0,0" VerticalAlignment="Top" Width="229" FontSize="18" FontFamily="Roboto"/>
+        <Label Content="Start date" Foreground="White" HorizontalAlignment="Left" Height="40" Margin="178,262,0,0" VerticalAlignment="Top" Width="229" FontSize="18" FontFamily="Roboto"/>
+        <Label Content="Last registration date" Foreground="White" HorizontalAlignment="Left" Height="40" Margin="178,302,0,0" VerticalAlignment="Top" Width="229" FontSize="18" FontFamily="Roboto"/>
+        <Label Content="Level of tournament" Foreground="White" HorizontalAlignment="Left" Height="40" Margin="178,342,0,0" VerticalAlignment="Top" Width="229" FontSize="18" FontFamily="Roboto"/>
+        <Label Content="Number of participants" Foreground="White" HorizontalAlignment="Left" Height="40" Margin="178,382,0,0" VerticalAlignment="Top" Width="229" FontSize="18" FontFamily="Roboto"/>
+        <Label Content="Scenario for tournament" Foreground="White" HorizontalAlignment="Left" Height="40" Margin="178,422,0,0" VerticalAlignment="Top" Width="229" FontSize="18" FontFamily="Roboto"/>
+        <Label Content="Invited players" Foreground="White" HorizontalAlignment="Left" Height="40" Margin="178,462,0,0" VerticalAlignment="Top" Width="229" FontSize="18" FontFamily="Roboto"/>
+        <TextBox HorizontalAlignment="Left" Height="28" Margin="518,108,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="570"/>
+        <TextBox HorizontalAlignment="Left" Height="28" Margin="518,148,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="570"/>
+        <TextBox HorizontalAlignment="Left" Height="28" Margin="518,228,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="570"/>
+        <TextBox HorizontalAlignment="Left" Height="28" Margin="518,268,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="570"/>
+        <TextBox HorizontalAlignment="Left" Height="28" Margin="518,308,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="570"/>
+        <ComboBox HorizontalAlignment="Left" Height="28" Margin="518,188,0,0" VerticalAlignment="Top" Width="570"/>
+        <ComboBox HorizontalAlignment="Left" Height="28" Margin="518,348,0,0" VerticalAlignment="Top" Width="570"/>
+        <ComboBox HorizontalAlignment="Left" Height="28" Margin="518,388,0,0" VerticalAlignment="Top" Width="570"/>
+        <ComboBox HorizontalAlignment="Left" Height="28" Margin="518,426,0,0" VerticalAlignment="Top" Width="570"/>
+        <ComboBox HorizontalAlignment="Left" Height="28" Margin="518,466,0,0" VerticalAlignment="Top" Width="570"/>
+        <Button Content="CREATE AND CONFIRM" Background ="#4377B3" Height="53" Margin="763,558,179,0" VerticalAlignment="Top" FontSize="20"/>
+        <Button Content="CANCEL" Height="53" Margin="178,558,764,0" VerticalAlignment="Top" FontSize="20"/>
+
+    </Grid>
+</Window>

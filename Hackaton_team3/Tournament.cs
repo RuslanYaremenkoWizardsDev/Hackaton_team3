@@ -5,11 +5,13 @@ using System.Text;
 
 namespace Hackaton_team3
 {
-    public class Tournament
+    public class Tournament : ISerializableToDB
     {
         private string _name;
         private string _description;
         private string _location;
+
+        public ParticipantsAmount Amount { get; set; } 
         public TournamentMode Mode { get; set; }
         public string Name
         {
@@ -73,6 +75,8 @@ namespace Hackaton_team3
         public Scenario Scenario { get; set; }
 
         public Status Status { get; set; }
+
+        public int Id { get; set; }
 
         public Tournament()
         {
