@@ -19,8 +19,8 @@
                  Gray" Margin="77,125,66.6,0" TextWrapping="Wrap" Text=" enter login/email" VerticalAlignment="Top"  Background="#FF01131F" Grid.ColumnSpan="3" />
         <TextBox HorizontalAlignment="Left" Foreground ="Gray" Height="33" Margin="77,207,0,0" TextWrapping="Wrap" Text=" enter password" VerticalAlignment="Top" Width="350"  Background="#FF01131F" Grid.ColumnSpan="3"/>
         <TextBox HorizontalAlignment="Left" Foreground ="Gray" Height="33" Margin="77,293,0,0" TextWrapping="Wrap" Text=" enter password" VerticalAlignment="Top" Width="350"  Background="#FF01131F" Grid.ColumnSpan="3"/>
-        <Button Content="REGISTER" Foreground ="White" HorizontalAlignment="Center"  Margin="147,383,1.8,0" VerticalAlignment="Top" Width="200"  Background="#FF999999" Grid.ColumnSpan="2"/>
-        <Label Content="Login" Foreground ="LightGray" HorizontalAlignment="Center" Margin="77,83,165.54,0" VerticalAlignment="Top" Height="37"/>
+        <Button Content="REGISTER" Click="Button_Main_Window_Click" Foreground ="White" HorizontalAlignment="Center"  Margin="147,383,1.8,0" VerticalAlignment="Top" Width="200"  Background="#FF999999" Grid.ColumnSpan="2"/>
+        <Label Content="Login" Foreground ="LightGray" HorizontalAlignment="Left" Margin="79,83,0,0" VerticalAlignment="Top" Height="37" Width="62"/>
         <Label Content="Password" Foreground ="LightGray" HorizontalAlignment="Center" Margin="77,170,133.54,0" VerticalAlignment="Top" Height="37" Width="91"/>
         <Label Content="Confirm Password" Foreground ="LightGray" HorizontalAlignment="Center" Margin="77,256,57.54,0" VerticalAlignment="Top" Height="37" Width="167"/>
     </Grid>
