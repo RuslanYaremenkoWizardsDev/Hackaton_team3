@@ -180,6 +180,7 @@ namespace Hackaton_team3
             sb.Append($"\"{_result}\",");
             sb.Append($"\"{Status.ToString()}\",");
             sb.Append($"\"{Layer.ToString()}\",");
+
             return sb.ToString();
         }
     }
